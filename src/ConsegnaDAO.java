@@ -4,7 +4,7 @@ public class ConsegnaDAO {
 		return false;// da cambiare
 	}
 
-	public boolean insertConsega() {
+	public boolean insertConsegna() {
 		return false;
 	}
 }
