@@ -1,3 +1,4 @@
+package classiDAO;
 
 public class AttivitaDAO {
 	public boolean fetchAttivita(){

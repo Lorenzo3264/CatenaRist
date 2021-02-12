@@ -1,3 +1,4 @@
+package classiDAO;
 
 public class ConsegnaDAO {
 	public boolean fetchConsegna() { //da vedere con le liste per permettere al rider di avere più consegne da vedere

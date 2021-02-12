@@ -1,3 +1,4 @@
+package classiDAO;
 
 public class DipendenteDAO {
 	public boolean fetchDipendete() {//da fare con le liste
