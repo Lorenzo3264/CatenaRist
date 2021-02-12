@@ -3,7 +3,7 @@ package classi;
 public class Cliente {
 
 	//ATTRIBUTI
-	private int codCl;
+	private String codCl; //da int a String per permettere di usare "nextval("seq_codcl")" nell'inserimento a database
 	private String nome;
 	private String cognome;
 	private String dataN;
@@ -12,11 +12,11 @@ public class Cliente {
 	private String cellulare;
 	
 	//METODI
-	public int getCodCl() {
+	public String getCodCl() {
 		return codCl;
 	}
-	public void setCodCl(int codCl) {
-		this.codCl = codCl;
+	public void setCodCl(String string) {
+		this.codCl = string;
 	}
 	public String getNome() {
 		return nome;
