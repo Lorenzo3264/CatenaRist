@@ -2,16 +2,23 @@ package finestre;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import controllers.PadreController;
 import controllers.ControllerCliente;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class WinInfoUpdate extends JFrame {
 
@@ -21,13 +28,16 @@ public class WinInfoUpdate extends JFrame {
 	private JTextField txt_nome;
 	private JTextField txt_cognome;
 	private JTextField txt_cellulare;
+	private PadreController controller;
 
 	
 	/**
 	 * Create the frame.
 	 * @param controllerCliente 
 	 */
-	public WinInfoUpdate(ControllerCliente controllerCliente) {
+	public WinInfoUpdate(PadreController con) {
+		
+		controller = con;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 521, 483);
@@ -41,11 +51,13 @@ public class WinInfoUpdate extends JFrame {
 		contentPane.add(lbl_email);
 		
 		txt_email = new JTextField();
+		txt_email.setText(controller.getUtente().getEmail());
 		txt_email.setBounds(140, 23, 355, 20);
 		contentPane.add(txt_email);
 		txt_email.setColumns(10);
 		
 		psw_password = new JPasswordField();
+		psw_password.setText(controller.getUtente().getPassword());
 		psw_password.setBounds(140, 54, 355, 20);
 		contentPane.add(psw_password);
 		
@@ -54,6 +66,7 @@ public class WinInfoUpdate extends JFrame {
 		contentPane.add(lbl_password);
 		
 		txt_nome = new JTextField();
+		txt_nome.setText(controller.getUtente().getNome());
 		txt_nome.setBounds(140, 85, 355, 20);
 		contentPane.add(txt_nome);
 		txt_nome.setColumns(10);
@@ -63,6 +76,7 @@ public class WinInfoUpdate extends JFrame {
 		contentPane.add(lbl_nome);
 		
 		txt_cognome = new JTextField();
+		txt_cognome.setText(controller.getUtente().getCognome());
 		txt_cognome.setBounds(140, 116, 355, 20);
 		contentPane.add(txt_cognome);
 		txt_cognome.setColumns(10);
@@ -84,7 +98,22 @@ public class WinInfoUpdate extends JFrame {
 		lbl.setBounds(20, 178, 120, 14);
 		contentPane.add(lbl);
 		
-		JButton btn_conferma = new JButton("Indietro");
+		UtilDateModel model = new UtilDateModel();
+		Properties p = new Properties();
+		p.put("text.today", "Oggi");
+		p.put("text.month", "Mese");
+		p.put("text.year", "Anno");
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		datePanel.setSize(485, 180);
+		datePanel.setLocation(10, 205);
+		contentPane.add(datePanel);
+		
+		JButton btn_conferma = new JButton("Conferma");
+		btn_conferma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btn_conferma.setBounds(406, 410, 89, 23);
 		contentPane.add(btn_conferma);
 		

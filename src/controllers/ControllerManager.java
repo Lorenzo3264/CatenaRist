@@ -1,5 +1,5 @@
 package controllers;
 
-public class ControllerManager {
+public class ControllerManager extends PadreController {
 
 }

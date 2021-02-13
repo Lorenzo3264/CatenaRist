@@ -6,7 +6,7 @@ import classiDAO.*;
 import finestre.*;
 
 
-public class ControllerCliente {
+public class ControllerCliente extends PadreController{
 	
 	private Cliente cliente;
 	private Acquisto acquisto;
