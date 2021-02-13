@@ -1,6 +1,6 @@
 package classi;
 
-public class Rider {
+public class Rider extends Utente{
 
 	//ATTRIBUTI
 	private int codR;

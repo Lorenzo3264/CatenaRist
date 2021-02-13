@@ -1,4 +1,5 @@
 package classiDAO;
+import classi.Cliente;
 
 public class ClienteDAO {
 
@@ -6,7 +7,7 @@ public class ClienteDAO {
 		return false;// da cambiare
 	}
 	
-	public boolean insertCliente() {
+	public boolean insertCliente(Cliente cl) {
 		return false;// da cambiare
 	}
 }

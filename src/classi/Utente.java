@@ -1,30 +1,14 @@
 package classi;
 
-public class Manager extends Utente {
-
-	//ATTRIBUTI
-	private int codM;
-	private int codA;
+public class Utente { //creata per permettere la modifica delle informazioni di manager, cliente e rider facilmente
 	private String nome;
 	private String cognome;
+	private String dataN;
 	private String email;
 	private String password;
 	private String cellulare;
-	private String dataN;
 	
-	//METODI
-	public int getCodM() {
-		return codM;
-	}
-	public void setCodM(int codM) {
-		this.codM = codM;
-	}
-	public int getCodA() {
-		return codA;
-	}
-	public void setCodA(int codA) {
-		this.codA = codA;
-	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -36,6 +20,12 @@ public class Manager extends Utente {
 	}
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
+	}
+	public String getDataN() {
+		return dataN;
+	}
+	public void setDataN(String dataN) {
+		this.dataN = dataN;
 	}
 	public String getEmail() {
 		return email;
@@ -55,13 +45,4 @@ public class Manager extends Utente {
 	public void setCellulare(String cellulare) {
 		this.cellulare = cellulare;
 	}
-	public String getDataN() {
-		return dataN;
-	}
-	public void setDataN(String dataN) {
-		this.dataN = dataN;
-	}
-	
-	
-	
 }

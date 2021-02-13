@@ -1,6 +1,6 @@
 package classi;
 
-public class Cliente {
+public class Cliente extends Utente {
 
 	//ATTRIBUTI
 	private String codCl; //da int a String per permettere di usare "nextval("seq_codcl")" nell'inserimento a database

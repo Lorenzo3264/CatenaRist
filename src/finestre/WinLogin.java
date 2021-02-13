@@ -1,5 +1,6 @@
 package finestre;
 import controllers.*;
+import classi.Account;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -53,6 +54,8 @@ public class WinLogin extends JFrame {
 		btn_login = new JButton("Accedi");
 		btn_login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				c.getAccount().setEmail(txt_email.getText());
+				c.getAccount().setPassword(psw_password.getText());
 				c.login(); //bisogna aggiungere attributi per la ricerca al database
 			}
 		});
@@ -69,15 +72,15 @@ public class WinLogin extends JFrame {
 		contentPane.add(btn_signin);
 		
 		lbl_email = new JLabel("Inserisci Email");
-		lbl_email.setBounds(198, 85, 106, 14);
+		lbl_email.setBounds(198, 85, 241, 14);
 		contentPane.add(lbl_email);
 		
 		lbl_password = new JLabel("Inserisci password");
-		lbl_password.setBounds(198, 180, 106, 14);
+		lbl_password.setBounds(198, 180, 241, 14);
 		contentPane.add(lbl_password);
 		
 		lbl_signin = new JLabel("Sei un nuovo cliente?");
-		lbl_signin.setBounds(198, 340, 143, 14);
+		lbl_signin.setBounds(198, 340, 241, 14);
 		contentPane.add(lbl_signin);
 	}
 }

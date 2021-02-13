@@ -7,21 +7,89 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllers.ControllerCliente;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+
 public class WinInfoUpdate extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txt_email;
+	private JPasswordField psw_password;
+	private JTextField txt_nome;
+	private JTextField txt_cognome;
+	private JTextField txt_cellulare;
 
 	
 	/**
 	 * Create the frame.
+	 * @param controllerCliente 
 	 */
-	public WinInfoUpdate() {
+	public WinInfoUpdate(ControllerCliente controllerCliente) {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 521, 483);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lbl_email = new JLabel("Email:");
+		lbl_email.setBounds(10, 26, 120, 14);
+		contentPane.add(lbl_email);
+		
+		txt_email = new JTextField();
+		txt_email.setBounds(140, 23, 355, 20);
+		contentPane.add(txt_email);
+		txt_email.setColumns(10);
+		
+		psw_password = new JPasswordField();
+		psw_password.setBounds(140, 54, 355, 20);
+		contentPane.add(psw_password);
+		
+		JLabel lbl_password = new JLabel("Password:");
+		lbl_password.setBounds(10, 57, 120, 14);
+		contentPane.add(lbl_password);
+		
+		txt_nome = new JTextField();
+		txt_nome.setBounds(140, 85, 355, 20);
+		contentPane.add(txt_nome);
+		txt_nome.setColumns(10);
+		
+		JLabel lbl_nome = new JLabel("Nome:");
+		lbl_nome.setBounds(10, 88, 120, 14);
+		contentPane.add(lbl_nome);
+		
+		txt_cognome = new JTextField();
+		txt_cognome.setBounds(140, 116, 355, 20);
+		contentPane.add(txt_cognome);
+		txt_cognome.setColumns(10);
+		
+		JLabel lbl_cognome = new JLabel("Cognome:");
+		lbl_cognome.setBounds(10, 119, 120, 14);
+		contentPane.add(lbl_cognome);
+		
+		txt_cellulare = new JTextField();
+		txt_cellulare.setBounds(140, 147, 355, 20);
+		contentPane.add(txt_cellulare);
+		txt_cellulare.setColumns(10);
+		
+		JLabel lbl_cellulare = new JLabel("Cellulare: ");
+		lbl_cellulare.setBounds(10, 150, 120, 14);
+		contentPane.add(lbl_cellulare);
+		
+		JLabel lbl = new JLabel("Data di nascita:");
+		lbl.setBounds(20, 178, 120, 14);
+		contentPane.add(lbl);
+		
+		JButton btn_conferma = new JButton("Indietro");
+		btn_conferma.setBounds(406, 410, 89, 23);
+		contentPane.add(btn_conferma);
+		
+		JButton btn_indietro = new JButton("Indietro");
+		btn_indietro.setBounds(10, 410, 89, 23);
+		contentPane.add(btn_indietro);
 	}
-
 }

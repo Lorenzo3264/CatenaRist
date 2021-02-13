@@ -1,8 +1,13 @@
 package classiDAO;
+import java.util.ArrayList;
+
+import classi.*;
 
 public class ProdottoDAO {
 
-	public boolean fetchProdotto() {//da fare con le liste?
-		return false;// da cambiare
+	public ArrayList<Prodotto> fetchProdotto() {//da fare con le liste?
+		ArrayList<Prodotto> prodotti = new ArrayList<Prodotto>();
+		
+		return prodotti;// da vedere
 	}
 }
