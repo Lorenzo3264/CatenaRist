@@ -54,9 +54,7 @@ public class WinLogin extends JFrame {
 		btn_login = new JButton("Accedi");
 		btn_login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c.getAccount().setEmail(txt_email.getText());
-				c.getAccount().setPassword(psw_password.getText());
-				c.login(); //bisogna aggiungere attributi per la ricerca al database
+				c.login(txt_email.getText(),psw_password.getText()); //bisogna aggiungere attributi per la ricerca al database
 			}
 		});
 		btn_login.setBounds(198, 274, 241, 23);

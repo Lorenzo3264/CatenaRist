@@ -7,12 +7,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 
 import controllers.ControllerCliente;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 
@@ -29,7 +36,7 @@ public class WinOrdine extends JFrame {
 	 * Create the frame.
 	 * @param controller 
 	 */
-	public WinOrdine(ControllerCliente con) {
+	public WinOrdine(ControllerCliente con, ArrayList<Prodotto> prodotti) {
 		setResizable(false);
 		controller = con;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,31 +46,6 @@ public class WinOrdine extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
-	//prova per la tabella
-//		String[] colonne = {"nome", "descrizione","prezzo","tipo","quantità"};
-//		Object[][] righe;
-//		int numProdotti = 0;
-//		Iterator<Prodotto> prodotto = controller.getProdotti().iterator();
-//		int i = 0;
-//		while(prodotto.hasNext()) {
-//			numProdotti = numProdotti + 1;
-//		}
-//		righe = new Object[5][numProdotti];
-//		//deve essere inizializzato di nuovo l'iteratore (?)
-//		while(prodotto.hasNext()) {
-//			righe[1][i] = prodotto.next().getNome();
-//			righe[2][i] = prodotto.next().getDescrizione();
-//			righe[3][i] = prodotto.next().getPrezzo();
-//			righe[4][i] = prodotto.next().getTipo();
-//			righe[5][i] = new String("0");
-//			i++;
-//		}
-	
-//		tbl_prodotti = new JTable(righe, colonne);
-//		tbl_prodotti.setBounds(10, 64, 600, 275);
-//		contentPane.add(tbl_prodotti);
-	//fine prova per la tabella	
 		
 		
 		txt_prezzomin = new JTextField();
@@ -109,5 +91,35 @@ public class WinOrdine extends JFrame {
 		});
 		btn_indietro.setBounds(10, 389, 89, 23);
 		contentPane.add(btn_indietro);
+		
+	//prova per la tabella
+		String[] colonne = {"nome", "descrizione","prezzo","tipo","quantità"};
+		Object[][] righe;
+		int numProdotti = 0;
+		Iterator<Prodotto> prodotto = prodotti.iterator();
+		int i = 0;
+		while(prodotto.hasNext()) {
+			numProdotti = numProdotti + 1;
+			prodotto.next();
+		}
+		righe = new Object[5][numProdotti];
+		//deve essere inizializzato di nuovo l'iteratore (?)
+		prodotto = prodotti.iterator();
+		
+		//controllare da qui la prossima volta
+		
+		while(prodotto.hasNext()) {
+			righe[1][i] = prodotto.next().getNome();
+			righe[2][i] = prodotto.next().getDescrizione();
+			righe[3][i] = prodotto.next().getPrezzo();
+			righe[4][i] = prodotto.next().getTipo();
+			righe[5][i] = new String("0");
+			i++;
+		}
+	
+		tbl_prodotti = new JTable(righe, colonne);
+		tbl_prodotti.setBounds(10, 64, 600, 275);
+		contentPane.add(tbl_prodotti);
+	//fine prova per la tabella	
 	}
 }

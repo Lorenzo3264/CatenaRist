@@ -1,5 +1,8 @@
 package controllers;
 import finestre.*;
+
+import java.sql.SQLException;
+
 import classi.*;
 import classiDAO.*;
 
@@ -23,6 +26,12 @@ public class Controller {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		try {
+			Class.forName("org.postgresql.Driver");
+		}catch(ClassNotFoundException e) {
+			
+		}
+		
 		Controller c = new Controller();
 	}
 	
@@ -32,11 +41,20 @@ public class Controller {
 		winLogin.show();
 	}
 	
-	public void login() {
+	public void login(String email, String password) {
 		//codice per confrontare i dati in account
 		//bisogna fare richiesta al database di trovare la riga giusta di account, sollevare un eccezione in caso non ci fosse
 		//passare alla schermata giusta in base al tipo di permessi, mostrare un messaggio in caso di eccezione
-		winLogin.hide();
+		try {
+			accountDAO = new AccountDAO();
+			account = accountDAO.fetchAccount(email, password);
+			if(account.getPermessi().equals("codCl")) {
+				winLogin.hide();
+				controllerCliente = new ControllerCliente(account, this);
+			}
+		}catch(SQLException e) {
+			System.out.println("c'è stato un errore di tipo: \n"+ e.getMessage());
+		}
 		
 	}
 	

@@ -1,4 +1,5 @@
 package controllers;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import classi.*;
@@ -31,16 +32,25 @@ public class ControllerCliente extends PadreController{
 		controller = c;
 		//effettuare fetch di cliente a partire dalle info di account
 		winCliente = new WinCliente(this);
+		winCliente.show();
 	}
 	
 
 	
 	public void ordina() {
 		//fetch prodotti
-		winOrdine = new WinOrdine(this);
-		winConferma = new WinConferma(this);
-		winCliente.hide();
-		winOrdine.show();
+		prodottoDAO = new ProdottoDAO();
+		try {
+			prodotti = prodottoDAO.fetchProdotto();
+			winOrdine = new WinOrdine(this,prodotti);
+			winConferma = new WinConferma(this);
+			winCliente.hide();
+			winOrdine.show();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	public void indietroO() {
