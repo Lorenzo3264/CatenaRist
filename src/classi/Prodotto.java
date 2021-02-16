@@ -5,7 +5,7 @@ public class Prodotto {
 	//ATTRIBUTI
 	private int codP;
 	private String nome;
-	private String prezzo;
+	private float prezzo;
 	private String descrizione;
 	private String tipo;
 	
