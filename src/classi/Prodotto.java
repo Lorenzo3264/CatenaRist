@@ -22,10 +22,10 @@ public class Prodotto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getPrezzo() {
+	public float getPrezzo() {
 		return prezzo;
 	}
-	public void setPrezzo(String prezzo) {
+	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
 	public String getDescrizione() {
