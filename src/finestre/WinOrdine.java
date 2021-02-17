@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.TableModel;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
@@ -22,6 +23,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
+import javax.swing.table.DefaultTableModel;
 
 public class WinOrdine extends JFrame {
 
@@ -40,7 +42,7 @@ public class WinOrdine extends JFrame {
 		setResizable(false);
 		controller = con;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 636, 462);
+		setBounds(100, 100, 636, 463);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -80,7 +82,7 @@ public class WinOrdine extends JFrame {
 				controller.confermaO(); //devo passare lista acquisti
 			}
 		});
-		btn_conferma.setBounds(521, 389, 89, 23);
+		btn_conferma.setBounds(521, 390, 89, 23);
 		contentPane.add(btn_conferma);
 		
 		JButton btn_indietro = new JButton("Indietro");
@@ -89,7 +91,7 @@ public class WinOrdine extends JFrame {
 				controller.indietroO();
 			}
 		});
-		btn_indietro.setBounds(10, 389, 89, 23);
+		btn_indietro.setBounds(10, 390, 89, 23);
 		contentPane.add(btn_indietro);
 		
 	//prova per la tabella
@@ -98,27 +100,47 @@ public class WinOrdine extends JFrame {
 		int numProdotti = 0;
 		Iterator<Prodotto> prodotto = prodotti.iterator();
 		int i = 0;
-		while(prodotto.hasNext()) {
+		for(i=0;i<prodotti.size();i++) {
 			numProdotti = numProdotti + 1;
-			prodotto.next();
+			System.out.println(prodotti.get(i).getNome());
 		}
-		righe = new Object[5][numProdotti];
+		righe = new Object[numProdotti][5];
 		//deve essere inizializzato di nuovo l'iteratore (?)
 		prodotto = prodotti.iterator();
 		
 		//controllare da qui la prossima volta
-		
-		while(prodotto.hasNext()) {
-			righe[1][i] = prodotto.next().getNome();
-			righe[2][i] = prodotto.next().getDescrizione();
-			righe[3][i] = prodotto.next().getPrezzo();
-			righe[4][i] = prodotto.next().getTipo();
-			righe[5][i] = new String("0");
-			i++;
+		for(i=0;i<numProdotti;i++) {
+//			 p = prodotto.next();
+			righe[i][0] = prodotti.get(i).getNome();
+			righe[i][1] = prodotti.get(i).getDescrizione();
+			righe[i][2] = prodotti.get(i).getPrezzo();
+			righe[i][3] = prodotti.get(i).getTipo();
+			righe[i][4] = "0";
+//			i++;
 		}
 	
+		DefaultTableModel modello = new DefaultTableModel(righe, colonne) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				if(column == 4) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		};
+		modello.setColumnIdentifiers(colonne);
+		
 		tbl_prodotti = new JTable(righe, colonne);
-		tbl_prodotti.setBounds(10, 64, 600, 275);
+		tbl_prodotti.setModel(modello);
+		tbl_prodotti.setEnabled(false);
+		tbl_prodotti.setBounds(10, 64, 600, 304);
 		contentPane.add(tbl_prodotti);
 	//fine prova per la tabella	
 	}

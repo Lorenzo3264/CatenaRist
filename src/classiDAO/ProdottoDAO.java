@@ -13,12 +13,13 @@ public class ProdottoDAO {
 
 	public ArrayList<Prodotto> fetchProdotto() throws SQLException {//da fare con le liste?
 		ArrayList<Prodotto> prodotti = new ArrayList<Prodotto>();
-		Prodotto prod = new Prodotto();
+		
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM prodotto");
 			while(rs.next()) {
+				Prodotto prod = new Prodotto();
 				prod.setCodP(rs.getInt("codp"));
 				prod.setDescrizione(rs.getString("descrizione"));
 				prod.setNome(rs.getString("nome"));
