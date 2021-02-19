@@ -15,8 +15,8 @@ public class Cliente extends Utente {
 	public String getCodCl() {
 		return codCl;
 	}
-	public void setCodCl(String string) {
-		this.codCl = string;
+	public void setCodCl(String a) {
+		this.codCl = a;
 	}
 	public String getNome() {
 		return nome;

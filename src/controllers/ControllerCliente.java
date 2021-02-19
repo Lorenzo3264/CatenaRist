@@ -1,6 +1,7 @@
 package controllers;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import classi.*;
 import classiDAO.*;
@@ -10,7 +11,7 @@ import finestre.*;
 public class ControllerCliente extends PadreController{
 	
 	private Cliente cliente;
-	private Acquisto acquisto;
+	private ArrayList<Acquisto> acquisto;
 	private ArrayList<Prodotto> prodotti;
 	private Consegna consegna;
 	private ClienteDAO clienteDAO;
@@ -30,15 +31,40 @@ public class ControllerCliente extends PadreController{
 
 	public ControllerCliente(Account a, Controller c) {
 		controller = c;
-		//effettuare fetch di cliente a partire dalle info di account
+		clienteDAO = new ClienteDAO();
+		try {
+			cliente = clienteDAO.fetchCliente(c.getAccount().getEmail());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		winCliente = new WinCliente(this);
 		winCliente.show();
 	}
 	
-
+	public void aggiungi(Acquisto acq) { //acq ha solo codP
+		int i = 0;
+		boolean presente = false;
+		
+		while(i < acquisto.size() && !presente) {
+			if(acquisto.get(i).getCodP() == acq.getCodP()) {
+				presente = true;
+				acquisto.get(i).setQuantita(acquisto.get(i).getQuantita() + 1);
+			}
+			i++;
+		}
+		if(!presente) {
+			acq.setQuantita(1);
+			acquisto.add(acq);
+		}
+		for(i=0;i<acquisto.size();i++) {
+			System.out.println("codcl = "+acquisto.get(i).getCodC()+" codP = "+acquisto.get(i).getCodP()+" quantità = "+acquisto.get(i).getQuantita());
+		}
+		System.out.println("");
+	}
 	
 	public void ordina() {
 		//fetch prodotti
+		acquisto = new ArrayList<Acquisto>();
 		prodottoDAO = new ProdottoDAO();
 		try {
 			prodotti = prodottoDAO.fetchProdotto();
@@ -95,5 +121,26 @@ public class ControllerCliente extends PadreController{
 		winInfoUpdate.hide();
 		cliente = cl;
 		winCliente.show();
+	}
+
+
+	public void rimuovi(Acquisto acq) {
+		int i = 0;
+		while(i<acquisto.size()) {
+			if(acquisto.get(i).getCodP() == acq.getCodP()) {
+				if(acquisto.get(i).getQuantita() == 1) {
+					acquisto.remove(i);
+				}else {
+					acquisto.get(i).setQuantita(acquisto.get(i).getQuantita() - 1);
+					//il caso in cui la quantità è uguale a 0 è già gestito all'interno di winOrdine
+				}
+				i = acquisto.size();
+			}
+			i++;
+		}
+		for(i=0;i<acquisto.size();i++) {
+			System.out.println("codcl = "+acquisto.get(i).getCodC()+" codP = "+acquisto.get(i).getCodP()+" quantità = "+acquisto.get(i).getQuantita());
+		}
+		System.out.println("");
 	}
 }
