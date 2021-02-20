@@ -121,11 +121,11 @@ public class WinSignin extends JFrame {
 					cl.setDataN((data.getDate())+"-"+(data.getMonth()+1)+"-"+(data.getYear()+1900));
 					System.out.println(cl.getDataN());
 					c.signin_ok(cl);
-				} catch (Exception e1) {
+				} catch (NullPointerException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(contentPane,
-						    "Ci sono errori nei dati inseriti",
+						    "Inserisci una data di nascita",
 						    "Errore di input",
 						    JOptionPane.ERROR_MESSAGE);
 				}

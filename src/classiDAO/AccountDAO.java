@@ -26,7 +26,7 @@ public class AccountDAO {
 			st.close();
 			con.close();
 		}catch(SQLException e) {
-			System.out.println("errore nella connessione: \n"+e);
+			e.printStackTrace();
 			throw new SQLException(e);
 		}
 		

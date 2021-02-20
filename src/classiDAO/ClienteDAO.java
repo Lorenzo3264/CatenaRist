@@ -23,6 +23,9 @@ public class ClienteDAO {
 			cl.setEmail(rs.getString("email"));
 			cl.setPassword(rs.getString("password"));
 			cl.setCellulare(rs.getString("cellulare"));
+			rs.close();
+			st.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

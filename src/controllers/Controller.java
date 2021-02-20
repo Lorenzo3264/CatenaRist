@@ -3,6 +3,8 @@ import finestre.*;
 
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import classi.*;
 import classiDAO.*;
 
@@ -53,7 +55,11 @@ public class Controller {
 				controllerCliente = new ControllerCliente(account, this);
 			}
 		}catch(SQLException e) {
-			System.out.println("c'è stato un errore di tipo: \n"+ e.getMessage());
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(winLogin,
+				    "Inserisci Email e Password corretti",
+				    "Attenzione",
+				    JOptionPane.WARNING_MESSAGE);
 		}
 		
 	}

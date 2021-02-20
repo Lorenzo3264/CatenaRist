@@ -23,6 +23,8 @@ public class ControllerCliente extends PadreController{
 	private WinCliente winCliente;
 	private WinInfoUpdate winInfoUpdate;
 	private Controller controller;
+	private ArrayList<Attivita> attivita;
+	private AttivitaDAO attivitaDAO;
 	
 	public ArrayList<Prodotto> getProdotti() {
 		return prodotti;
@@ -41,40 +43,24 @@ public class ControllerCliente extends PadreController{
 		winCliente.show();
 	}
 	
-	public void aggiungi(Acquisto acq) { //acq ha solo codP
-		int i = 0;
-		boolean presente = false;
-		
-		while(i < acquisto.size() && !presente) {
-			if(acquisto.get(i).getCodP() == acq.getCodP()) {
-				presente = true;
-				acquisto.get(i).setQuantita(acquisto.get(i).getQuantita() + 1);
-			}
-			i++;
-		}
-		if(!presente) {
-			acq.setQuantita(1);
-			acquisto.add(acq);
-		}
-		for(i=0;i<acquisto.size();i++) {
-			System.out.println("codcl = "+acquisto.get(i).getCodC()+" codP = "+acquisto.get(i).getCodP()+" quantità = "+acquisto.get(i).getQuantita());
-		}
-		System.out.println("");
-	}
+
 	
 	public void ordina() {
 		//fetch prodotti
 		acquisto = new ArrayList<Acquisto>();
 		prodottoDAO = new ProdottoDAO();
+		attivitaDAO = new AttivitaDAO();
 		try {
 			prodotti = prodottoDAO.fetchProdotto();
 			winOrdine = new WinOrdine(this,prodotti);
+			attivita = attivitaDAO.fetchAttivita();
 			winConferma = new WinConferma(this);
 			winCliente.hide();
 			winOrdine.show();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		
 		
 		
 	}
@@ -87,7 +73,9 @@ public class ControllerCliente extends PadreController{
 	public void confermaO() {
 		
 		winOrdine.hide();
+		winConferma.aggiornaprezzo();
 		winConferma.show();
+		
 	}
 	
 	public void indietroC() {
@@ -95,11 +83,18 @@ public class ControllerCliente extends PadreController{
 		winOrdine.show();
 	}
 	
-	public void confermaC() {
-		winConferma.dispose();
-		winOrdine.dispose();
-		//codice per l'inserimento dell'ordine nel database tramite DAO
-		winCliente.show();
+	public void confermaC(Consegna cons) {
+		try {
+			consegna = new Consegna();
+			
+			
+			winConferma.dispose();
+			winOrdine.dispose();
+			winCliente.show();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void info() {
@@ -124,6 +119,23 @@ public class ControllerCliente extends PadreController{
 	}
 
 
+	public void aggiungi(Acquisto acq) { //acq ha solo codP
+		int i = 0;
+		boolean presente = false;
+		
+		while(i < acquisto.size() && !presente) {
+			if(acquisto.get(i).getCodP() == acq.getCodP()) {
+				presente = true;
+				acquisto.get(i).setQuantita(acquisto.get(i).getQuantita() + 1);
+			}
+			i++;
+		}
+		if(!presente) {
+			acq.setQuantita(1);
+			acquisto.add(acq);
+		}
+	}
+	
 	public void rimuovi(Acquisto acq) {
 		int i = 0;
 		while(i<acquisto.size()) {
@@ -138,9 +150,42 @@ public class ControllerCliente extends PadreController{
 			}
 			i++;
 		}
-		for(i=0;i<acquisto.size();i++) {
-			System.out.println("codcl = "+acquisto.get(i).getCodC()+" codP = "+acquisto.get(i).getCodP()+" quantità = "+acquisto.get(i).getQuantita());
+	}
+
+
+	public void resettaSpesa() {
+		acquisto.clear();
+	}
+
+
+	public boolean isSpesaVuota() {
+		// TODO Auto-generated method stub
+		return acquisto.isEmpty();
+	}
+
+
+	public ArrayList<Attivita> getAttivita() {
+		// TODO Auto-generated method stub
+		return attivita;
+	}
+
+
+	public float getPrezzoTot() {
+		// TODO Auto-generated method stub
+		float prezzoTot = 0;
+		boolean trovato;
+		int j;
+		for(Acquisto i: acquisto) {
+			j = 0;
+			trovato = false;
+			while(j<prodotti.size() && !trovato) {
+				if(prodotti.get(j).getCodP() == i.getCodP()) {
+					prezzoTot = prezzoTot + (prodotti.get(j).getPrezzo()*i.getQuantita());
+					trovato = true;
+				}
+				j++;
+			}
 		}
-		System.out.println("");
+		return prezzoTot;
 	}
 }
