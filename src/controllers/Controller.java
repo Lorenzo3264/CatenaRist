@@ -34,7 +34,7 @@ public class Controller {
 			
 		}
 		
-		Controller c = new Controller();
+		Controller controller = new Controller();
 	}
 	
 	public Controller() {
@@ -52,7 +52,7 @@ public class Controller {
 			account = accountDAO.fetchAccount(email, password);
 			if(account.getPermessi().equals("codCl")) {
 				winLogin.hide();
-				controllerCliente = new ControllerCliente(account, this);
+				controllerCliente = new ControllerCliente(this);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -78,15 +78,30 @@ public class Controller {
 
 	public void signin_ok(Cliente cl) {
 		// TODO Auto-generated method stub
+		System.out.println(cl.toString());
 		clienteDAO = new ClienteDAO();
-		winSignin.hide();
-		//metodi di inserimento della riga al database
-		clienteDAO.insertCliente(cl);
-		winLogin.show();
+		try {
+			clienteDAO.insertCliente(cl);
+			JOptionPane.showMessageDialog(winSignin,
+				    "Registrazione effettuata con successo",
+				    "Messaggio",
+				    JOptionPane.INFORMATION_MESSAGE);
+			winSignin.hide();
+			winLogin.show();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(winSignin,
+				    "Inserisci correttamente i dati",
+				    "Attenzione",
+				    JOptionPane.WARNING_MESSAGE);
+			e.printStackTrace();
+		}
 	}
 	
 	public void logout() {
 		//supponendo che sono state già chiuse tutte le finestre precedenti
+		winLogin.dispose();
+		winLogin = new WinLogin(this);
 		winLogin.show();
 	}
 }

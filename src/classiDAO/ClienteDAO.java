@@ -10,19 +10,19 @@ import classi.Cliente;
 public class ClienteDAO {
 
 	public Cliente fetchCliente(String email) throws SQLException {
-		Cliente cl = new Cliente();
+		Cliente cliente = new Cliente();
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM cliente WHERE email = '"+email+"'");
 			rs.next();
-			cl.setCodCl(rs.getString("codcl"));
-			cl.setNome(rs.getString("nome"));
-			cl.setCognome(rs.getString("cognome"));
-			cl.setDataN(rs.getString("datan"));
-			cl.setEmail(rs.getString("email"));
-			cl.setPassword(rs.getString("password"));
-			cl.setCellulare(rs.getString("cellulare"));
+			cliente.setCodCl(rs.getString("codcl"));
+			cliente.setNome(rs.getString("nome"));
+			cliente.setCognome(rs.getString("cognome"));
+			cliente.setDataN(rs.getString("datan"));
+			cliente.setEmail(rs.getString("email"));
+			cliente.setPassword(rs.getString("password"));
+			cliente.setCellulare(rs.getString("cellulare"));
 			rs.close();
 			st.close();
 			con.close();
@@ -31,11 +31,30 @@ public class ClienteDAO {
 			e.printStackTrace();
 			throw new SQLException(e);
 		}
-		return cl;// da cambiare
+		return cliente;// da cambiare
 		
 	}
 	
-	public boolean insertCliente(Cliente cl) {
-		return false;// da cambiare
+	public void insertCliente(Cliente cliente) throws SQLException {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
+			Statement st = con.createStatement();
+			st.execute("INSERT INTO cliente VALUES ("+cliente.getCodCl()+",'"+cliente.getEmail()+"','"+cliente.getPassword()+"','"+cliente.getNome()+"','"+cliente.getCognome()+"','"+cliente.getCellulare()+"','"+cliente.getDataN()+"');");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void updateCliente(Cliente clienteEdit, String codCl) throws SQLException {
+		// TODO Auto-generated method stub
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
+			Statement st = con.createStatement();
+			st.execute("UPDATE cliente SET nome = '"+clienteEdit.getNome()+"', cognome ='"+clienteEdit.getCognome()+"', email ='"+clienteEdit.getEmail()+"', password ='"+clienteEdit.getPassword()+"', cellulare ='"+clienteEdit.getCellulare()+"', datan ='"+clienteEdit.getDataN()+"', WHERE codcl = "+codCl);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new SQLException(e);
+		}
 	}
 }

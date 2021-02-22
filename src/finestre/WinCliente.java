@@ -20,8 +20,8 @@ public class WinCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WinCliente(ControllerCliente c) {
-		controller = c;
+	public WinCliente(ControllerCliente contr) {
+		controller = contr;
 		setTitle("Men\u00F9 Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 369, 229);

@@ -2,15 +2,18 @@ package finestre;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.eclipse.swt.internal.win32.OS;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import classi.Utente;
 import controllers.PadreController;
 import controllers.ControllerCliente;
 import javax.swing.JLabel;
@@ -85,7 +88,7 @@ public class WinInfoUpdate extends JFrame {
 		lbl_cognome.setBounds(10, 119, 120, 14);
 		contentPane.add(lbl_cognome);
 		
-		txt_cellulare = new JTextField();
+		txt_cellulare = new JTextField(controller.getUtente().getCellulare());
 		txt_cellulare.setBounds(140, 147, 355, 20);
 		contentPane.add(txt_cellulare);
 		txt_cellulare.setColumns(10);
@@ -103,6 +106,11 @@ public class WinInfoUpdate extends JFrame {
 		p.put("text.today", "Oggi");
 		p.put("text.month", "Mese");
 		p.put("text.year", "Anno");
+		System.out.println(controller.getUtente().getDataN());
+		int year = Integer.parseInt(controller.getUtente().getDataN().substring(0, 4));
+		int month = Integer.parseInt(controller.getUtente().getDataN().substring(5, 7));
+		int day = Integer.parseInt(controller.getUtente().getDataN().substring(8, 10));
+		model.setDate(year, month, day);
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		datePanel.setSize(485, 180);
 		datePanel.setLocation(10, 205);
@@ -111,13 +119,26 @@ public class WinInfoUpdate extends JFrame {
 		JButton btn_conferma = new JButton("Conferma");
 		btn_conferma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+			Utente utente = new Utente();
+			utente.setCellulare(txt_cellulare.getText());
+			utente.setNome(txt_nome.getText());
+			utente.setCognome(txt_cognome.getText());
+			Date data = (Date) datePanel.getModel().getValue();
+			utente.setDataN((data.getDate())+"-"+(data.getMonth()+1)+"-"+(data.getYear()+1900));
+			utente.setPassword(psw_password.getText());
+			utente.setEmail(txt_email.getText());
+			controller.cambiaInfo(utente);
 			}
 		});
 		btn_conferma.setBounds(406, 410, 89, 23);
 		contentPane.add(btn_conferma);
 		
 		JButton btn_indietro = new JButton("Indietro");
+		btn_indietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.infoBack();
+			}
+		});
 		btn_indietro.setBounds(10, 410, 89, 23);
 		contentPane.add(btn_indietro);
 	}

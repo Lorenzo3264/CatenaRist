@@ -11,6 +11,23 @@ public class Cliente extends Utente {
 	private String password;
 	private String cellulare;
 	
+	public Cliente(Utente utente) {
+		// TODO Auto-generated constructor stub
+		this.nome = utente.getNome();
+		this.cognome = utente.getCognome();
+		this.dataN = utente.getDataN();
+		this.email = utente.getEmail();
+		this.password = utente.getPassword();
+		this.cellulare = utente.getCellulare();
+	}
+	
+	public Cliente() {}
+	
+	@Override
+	public String toString() {
+		return "Cliente [codCl=" + codCl + ", nome=" + nome + ", cognome=" + cognome + ", dataN=" + dataN + ", email="
+				+ email + ", password=" + password + ", cellulare=" + cellulare + "]";
+	}
 	//METODI
 	public String getCodCl() {
 		return codCl;

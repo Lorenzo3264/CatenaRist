@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
@@ -39,10 +41,10 @@ public class WinSignin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WinSignin(Controller c) {
+	public WinSignin(Controller contr) {
 		setTitle("Registrati");
 		setResizable(false);
-		controller = c;
+		controller = contr;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 582, 491);
 		contentPane = new JPanel();
@@ -109,18 +111,28 @@ public class WinSignin extends JFrame {
 		btn_conferma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Cliente cl = new Cliente();
-					cl.setCodCl("nextval(seq_codcl)");
-					cl.setNome(txt_nome.getText());
-					cl.setCognome(txt_cognome.getText());
-					cl.setEmail(txt_email.getText());
-					cl.setCellulare(txt_cellulare.getText());
-					cl.setPassword(psw_password.getText());
-					System.out.println(cl.getPassword());
+					Cliente cliente = new Cliente();
+					cliente.setCodCl("nextval('seq_codcl')");
+					cliente.setNome(txt_nome.getText());
+					cliente.setCognome(txt_cognome.getText());
+					cliente.setEmail(txt_email.getText());
+					cliente.setCellulare(txt_cellulare.getText());
+					cliente.setPassword(psw_password.getText());
 					Date data = (Date) datePanel.getModel().getValue();
-					cl.setDataN((data.getDate())+"-"+(data.getMonth()+1)+"-"+(data.getYear()+1900));
-					System.out.println(cl.getDataN());
-					c.signin_ok(cl);
+					cliente.setDataN((data.getDate())+"-"+(data.getMonth()+1)+"-"+(data.getYear()+1900));
+					if (cliente.getNome().isBlank() || cliente.getCognome().isBlank() || cliente.getEmail().isBlank() || cliente.getPassword().isBlank() || cliente.getCellulare().isBlank()) {
+						JOptionPane.showMessageDialog(contentPane,
+							    "Hai mancato un campo",
+							    "Errore di input",
+							    JOptionPane.ERROR_MESSAGE);
+					}else if(data.after(new Date())){
+						JOptionPane.showMessageDialog(contentPane,
+							    "Inserisci una data precedente a quella di oggi",
+							    "Errore di input",
+							    JOptionPane.ERROR_MESSAGE);
+					}else {
+						controller.signin_ok(cliente);
+					}
 				} catch (NullPointerException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -137,7 +149,7 @@ public class WinSignin extends JFrame {
 		JButton btn_indietro = new JButton("Torna indietro");
 		btn_indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c.signin_back();
+				controller.signin_back();
 			}
 		});
 		btn_indietro.setBounds(10, 408, 158, 33);

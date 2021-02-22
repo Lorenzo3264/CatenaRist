@@ -19,13 +19,13 @@ public class ProdottoDAO {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM prodotto");
 			while(rs.next()) {
-				Prodotto prod = new Prodotto();
-				prod.setCodP(rs.getInt("codp"));
-				prod.setDescrizione(rs.getString("descrizione"));
-				prod.setNome(rs.getString("nome"));
-				prod.setPrezzo(rs.getFloat("prezzo"));
-				prod.setTipo(rs.getString("tipo"));
-				prodotti.add(prod);
+				Prodotto prodotto = new Prodotto();
+				prodotto.setCodP(rs.getInt("codp"));
+				prodotto.setDescrizione(rs.getString("descrizione"));
+				prodotto.setNome(rs.getString("nome"));
+				prodotto.setPrezzo(rs.getFloat("prezzo"));
+				prodotto.setTipo(rs.getString("tipo"));
+				prodotti.add(prodotto);
 			}
 			rs.close();
 			st.close();

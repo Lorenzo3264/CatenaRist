@@ -11,7 +11,7 @@ import classi.Attivita;
 
 public class AttivitaDAO {
 	public ArrayList<Attivita> fetchAttivita() throws SQLException{
-		ArrayList<Attivita> att = new ArrayList<Attivita>();
+		ArrayList<Attivita> attivita = new ArrayList<Attivita>();
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
@@ -22,7 +22,7 @@ public class AttivitaDAO {
 				a.setCivico(rs.getString("civico"));
 				a.setVia(rs.getString("via"));
 				a.setOrariA(rs.getString("oraria"));
-				att.add(a);
+				attivita.add(a);
 			}
 			rs.close();
 			st.close();
@@ -32,6 +32,6 @@ public class AttivitaDAO {
 			e.printStackTrace();
 			throw new SQLException(e);
 		}
-		return att;
+		return attivita;
 	}
 }

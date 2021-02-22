@@ -30,8 +30,8 @@ public class WinLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WinLogin(Controller c) {
-		controller = c;
+	public WinLogin(Controller contr) {
+		controller = contr;
 		setResizable(false);
 		setTitle("LogIn");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +54,7 @@ public class WinLogin extends JFrame {
 		btn_login = new JButton("Accedi");
 		btn_login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c.login(txt_email.getText(),psw_password.getText()); //bisogna aggiungere attributi per la ricerca al database
+				controller.login(txt_email.getText(),psw_password.getText()); //bisogna aggiungere attributi per la ricerca al database
 			}
 		});
 		btn_login.setBounds(198, 274, 241, 23);
@@ -63,7 +63,7 @@ public class WinLogin extends JFrame {
 		btn_signin = new JButton("Crea nuovo account");
 		btn_signin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c.signin();
+				controller.signin();
 			}
 		});
 		btn_signin.setBounds(198, 365, 241, 23);

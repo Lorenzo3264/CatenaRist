@@ -5,6 +5,10 @@ import classi.Utente;
 public class PadreController { //permette una generalizzazione dei controller per utilizzare facilmente la finestra winInfoUpdate
 	private Utente utente;
 	
+	public void setUtente(Utente utente) {
+		this.utente = utente;
+	}
+	
 	public Utente getUtente() {
 		return utente;
 	}
