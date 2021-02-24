@@ -51,7 +51,7 @@ public class ClienteDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
-			st.execute("UPDATE cliente SET nome = '"+clienteEdit.getNome()+"', cognome ='"+clienteEdit.getCognome()+"', email ='"+clienteEdit.getEmail()+"', password ='"+clienteEdit.getPassword()+"', cellulare ='"+clienteEdit.getCellulare()+"', datan ='"+clienteEdit.getDataN()+"', WHERE codcl = "+codCl);
+			st.execute("UPDATE cliente SET nome = '"+clienteEdit.getNome()+"', cognome ='"+clienteEdit.getCognome()+"', email ='"+clienteEdit.getEmail()+"', password ='"+clienteEdit.getPassword()+"', cellulare ='"+clienteEdit.getCellulare()+"', datan ='"+clienteEdit.getDataN()+"' WHERE codcl = "+codCl);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
