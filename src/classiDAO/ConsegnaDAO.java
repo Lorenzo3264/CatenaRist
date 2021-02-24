@@ -5,13 +5,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import classi.Consegna;
+import classi.Rider;
 
 public class ConsegnaDAO {
-	public boolean fetchConsegna() { //da vedere con le liste per permettere al rider di avere più consegne da vedere
-		return false;// da cambiare
-	}
 
 	public void insertConsegna(Consegna consegna) {
 		try {
@@ -34,12 +33,80 @@ public class ConsegnaDAO {
 			ResultSet rs = statement.executeQuery("SELECT codc FROM consegna WHERE codc = (SELECT last_value from seq_codc)");
 			rs.next();
 			codC = rs.getInt("codc");
-			
+			rs.close();
+			statement.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new SQLException(e);
 		}
 		return codC;
+	}
+
+	public ArrayList<Consegna> fetchConsegna(Rider rider) throws SQLException {
+		ArrayList<Consegna> consegne = new ArrayList<Consegna>();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
+			Statement statement = con.createStatement();
+			ResultSet rs = statement.executeQuery("SELECT * FROM consegna WHERE codr = "+rider.getCodR()+";");
+			while(rs.next()) {
+				Consegna c = new Consegna();
+				c.setCodC(rs.getString("codc"));
+				c.setCodA(rs.getInt("coda"));
+				c.setCodCl(rs.getInt("codcl"));
+				c.setCodR(rs.getInt("codr"));
+				c.setDataO(rs.getString("datao"));
+				c.setDataC(rs.getString("datac"));
+				c.setVia(rs.getString("via"));
+				c.setCivico(rs.getString("civico"));
+				c.setMetodoP(rs.getString("metodop"));
+				c.setPrezzo(rs.getFloat("prezzo"));
+				c.setNote(rs.getString("note"));
+                consegne.add(c);  			
+			}
+			rs.close();
+			statement.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException(e);
+		}
+		return consegne;
+	}
+
+	public ArrayList<Consegna> fetchOrdini(Rider rider) throws SQLException {
+		ArrayList<Consegna> consegne = new ArrayList<Consegna>();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
+			Statement statement = con.createStatement();
+			ResultSet rs = statement.executeQuery("select * from consegna where codr is null and datac is null and coda in ( SELECT coda from attivita natural join collaborazione where codr="+rider.getCodR()+");");
+			while(rs.next()) {
+				Consegna c = new Consegna();
+				c.setCodC(rs.getString("codc"));
+				c.setCodA(rs.getInt("coda"));
+				c.setCodCl(rs.getInt("codcl"));
+				c.setCodR(rs.getInt("codr"));
+				c.setDataO(rs.getString("datao"));
+				c.setDataC(rs.getString("datac"));
+				c.setVia(rs.getString("via"));
+				c.setCivico(rs.getString("civico"));
+				c.setMetodoP(rs.getString("metodop"));
+				c.setPrezzo(rs.getFloat("prezzo"));
+				c.setNote(rs.getString("note"));
+                consegne.add(c);  			
+			}
+			int i;
+			for (i=0;i<consegne.size();i++) {
+				System.out.println(consegne.get(i).getVia());
+			}
+			rs.close();
+			statement.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException(e);
+		}
+		return consegne;
 	}
 }

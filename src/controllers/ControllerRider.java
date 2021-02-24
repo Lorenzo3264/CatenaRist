@@ -1,5 +1,6 @@
 package controllers;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -15,11 +16,11 @@ public class ControllerRider extends PadreController {
 	private WinInfoUpdate winInfoUpdate;
 	private Rider rider;
 	private RiderDAO riderDAO;
-	private Collaborazione collaborazione;
+	private ArrayList<Collaborazione> collaborazioni;
 	private CollaborazioneDAO collaborazioneDAO;
-	private Attivita attivita;
+	private ArrayList<Attivita> attivita;
 	private AttivitaDAO attivitaDAO;
-	private Consegna consegna;
+	private ArrayList<Consegna> consegne;
 	private ConsegnaDAO consegnaDAO;
 	private Controller controller;
 	
@@ -30,6 +31,8 @@ public class ControllerRider extends PadreController {
     		riderDAO = new RiderDAO();
     		rider = riderDAO.fetchRider(controller.getAccount().getEmail());
     		super.setUtente(rider);
+    		attivitaDAO = new AttivitaDAO();
+    		attivita = attivitaDAO.fetchAttivita(rider);
     	}catch (SQLException e) {
     		e.printStackTrace();
     	};
@@ -37,15 +40,27 @@ public class ControllerRider extends PadreController {
     };
 	
 	public void consegna() {
-		winRider.hide();
-		winConsegne = new WinConsegne(this);
-		winConsegne.show();
+		try {
+			consegnaDAO = new ConsegnaDAO();
+			consegne = consegnaDAO.fetchConsegna(rider);
+			winRider.hide();
+			winConsegne = new WinConsegne(this, consegne);
+			winConsegne.show();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void ordini() {
-		winRider.hide();
-		winRiderOrdini = new WinRiderOrdini(this);
-		winRiderOrdini.show();
+		try {
+			consegnaDAO = new ConsegnaDAO();
+			consegne = consegnaDAO.fetchOrdini(rider);
+			winRider.hide();
+			winRiderOrdini = new WinRiderOrdini(this, consegne);
+			winRiderOrdini.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void info() {
