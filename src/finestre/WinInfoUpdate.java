@@ -16,6 +16,7 @@ import classi.Utente;
 import controllers.PadreController;
 import controllers.ControllerCliente;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -122,11 +123,16 @@ public class WinInfoUpdate extends JFrame {
 			utente.setCellulare(txt_cellulare.getText());
 			utente.setNome(txt_nome.getText());
 			utente.setCognome(txt_cognome.getText());
-			Date data = (Date) datePanel.getModel().getValue();
-			utente.setDataN((data.getMonth()+1)+"-"+data.getDate()+"-"+(data.getYear()+1900));
-			utente.setPassword(psw_password.getText());
 			utente.setEmail(txt_email.getText());
-			controller.cambiaInfo(utente);
+			try {
+				Date data = (Date) datePanel.getModel().getValue();
+				utente.setDataN((data.getMonth()+1)+"-"+data.getDate()+"-"+(data.getYear()+1900));
+				controller.cambiaInfo(utente);
+			} catch (NullPointerException e1) {
+				e1.printStackTrace();
+				JOptionPane.showMessageDialog(contentPane, "Inserisci una data di nascita", "Errore di input",
+						JOptionPane.ERROR_MESSAGE);
+			}
 			}
 		});
 		btn_conferma.setBounds(406, 410, 89, 23);

@@ -210,9 +210,15 @@ public class ControllerCliente extends PadreController {
 		Cliente clienteEdit = new Cliente(utente);
 		try {
 			clienteDAO.updateCliente(clienteEdit, cliente.getCodCl());
+			JOptionPane.showMessageDialog(winInfoUpdate, "Modifica effettuata con successo", "Messaggio",
+					JOptionPane.INFORMATION_MESSAGE);
+			winInfoUpdate.hide();
+			winCliente.show();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(winInfoUpdate, "Ci sono errori nei valori inseriti", "Errore di input",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
