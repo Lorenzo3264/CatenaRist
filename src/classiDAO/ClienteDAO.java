@@ -42,6 +42,7 @@ public class ClienteDAO {
 			st.execute("INSERT INTO cliente VALUES ("+cliente.getCodCl()+",'"+cliente.getEmail()+"','"+cliente.getPassword()+"','"+cliente.getNome()+"','"+cliente.getCognome()+"','"+cliente.getCellulare()+"','"+cliente.getDataN()+"');");
 		}catch(SQLException e) {
 			e.printStackTrace();
+			throw new SQLException(e);
 		}
 	}
 
