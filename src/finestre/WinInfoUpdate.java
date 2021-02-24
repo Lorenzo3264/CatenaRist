@@ -124,7 +124,7 @@ public class WinInfoUpdate extends JFrame {
 			utente.setNome(txt_nome.getText());
 			utente.setCognome(txt_cognome.getText());
 			Date data = (Date) datePanel.getModel().getValue();
-			utente.setDataN((data.getDate())+"-"+(data.getMonth()+1)+"-"+(data.getYear()+1900));
+			utente.setDataN((data.getMonth()+1)+"-"+data.getDate()+"-"+(data.getYear()+1900));
 			utente.setPassword(psw_password.getText());
 			utente.setEmail(txt_email.getText());
 			controller.cambiaInfo(utente);
