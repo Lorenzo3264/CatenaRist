@@ -19,7 +19,11 @@ public class Rider extends Utente{
 		this.password = utente.getPassword();
 		this.cellulare = utente.getCellulare();
 		this.DataN = utente.getDataN();
+		this.mezzo = utente.getMezzo();
 	}
+	
+	public Rider() {}
+	
 	//METODI
 	public int getCodR() {
 		return codR;

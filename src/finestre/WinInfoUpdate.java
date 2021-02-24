@@ -22,6 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class WinInfoUpdate extends JFrame {
 
@@ -38,16 +39,23 @@ public class WinInfoUpdate extends JFrame {
 	 * Create the frame.
 	 * @param controllerCliente 
 	 */
-	public WinInfoUpdate(PadreController con) {
+	public WinInfoUpdate(PadreController con, boolean hasMezzi) {
 		
 		controller = con;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 521, 483);
+		setBounds(100, 100, 521, 584);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		String[] mezzi = {"moto", "macchina", "furgone"};
+		JComboBox cb_mezzo = new JComboBox(mezzi);
+		cb_mezzo.setBounds(10, 400, 485, 20);
+		if(hasMezzi) {
+			contentPane.add(cb_mezzo);
+		}
 		
 		JLabel lbl_email = new JLabel("Email:");
 		lbl_email.setBounds(10, 26, 120, 14);
@@ -125,6 +133,10 @@ public class WinInfoUpdate extends JFrame {
 			utente.setCognome(txt_cognome.getText());
 			utente.setEmail(txt_email.getText());
 			utente.setPassword(psw_password.getText());
+			if(hasMezzi) {
+				utente.setMezzo((String)cb_mezzo.getSelectedItem());
+				System.out.println("mezzo uguale a "+utente.getMezzo());
+			}
 			try {
 				Date data = (Date) datePanel.getModel().getValue();
 				utente.setDataN((data.getMonth()+1)+"-"+data.getDate()+"-"+(data.getYear()+1900));
@@ -136,7 +148,7 @@ public class WinInfoUpdate extends JFrame {
 			}
 			}
 		});
-		btn_conferma.setBounds(406, 410, 89, 23);
+		btn_conferma.setBounds(406, 511, 89, 23);
 		contentPane.add(btn_conferma);
 		
 		JButton btn_indietro = new JButton("Indietro");
@@ -145,7 +157,11 @@ public class WinInfoUpdate extends JFrame {
 				controller.infoBack();
 			}
 		});
-		btn_indietro.setBounds(10, 410, 89, 23);
+		btn_indietro.setBounds(10, 511, 89, 23);
 		contentPane.add(btn_indietro);
+		
+		
+		
+		
 	}
 }

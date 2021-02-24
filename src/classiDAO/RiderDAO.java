@@ -35,7 +35,17 @@ public class RiderDAO {
 		return rider;
 	}
 	
-	public boolean updateRider() {
-		return false;
+	public void updateRider(Rider riderEdit, int codR) throws SQLException {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
+			Statement st = con.createStatement();
+			st.execute("UPDATE rider SET nome = '"+riderEdit.getNome()+"', cognome ='"+riderEdit.getCognome()+"', email ='"+riderEdit.getEmail()+"', password ='"+riderEdit.getPassword()+"', cellulare ='"+riderEdit.getCellulare()+"', datan ='"+riderEdit.getDataN()+"', mezzo = '"+riderEdit.getMezzo()+"' WHERE codr = "+codR);
+			con.close();
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new SQLException(e);
+		}
 	}
 }

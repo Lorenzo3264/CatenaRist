@@ -31,7 +31,7 @@ public class ClienteDAO {
 			e.printStackTrace();
 			throw new SQLException(e);
 		}
-		return cliente;
+		return cliente;// da cambiare
 		
 	}
 	
@@ -40,6 +40,8 @@ public class ClienteDAO {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
 			st.execute("INSERT INTO cliente VALUES ("+cliente.getCodCl()+",'"+cliente.getEmail()+"','"+cliente.getPassword()+"','"+cliente.getNome()+"','"+cliente.getCognome()+"','"+cliente.getCellulare()+"','"+cliente.getDataN()+"');");
+			con.close();
+			st.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 			throw new SQLException(e);
@@ -52,6 +54,8 @@ public class ClienteDAO {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
 			st.execute("UPDATE cliente SET nome = '"+clienteEdit.getNome()+"', cognome ='"+clienteEdit.getCognome()+"', email ='"+clienteEdit.getEmail()+"', password ='"+clienteEdit.getPassword()+"', cellulare ='"+clienteEdit.getCellulare()+"', datan ='"+clienteEdit.getDataN()+"' WHERE codcl = "+codCl);
+			con.close();
+			st.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

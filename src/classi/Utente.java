@@ -7,8 +7,15 @@ public class Utente { //creata per permettere la modifica delle informazioni di 
 	private String email;
 	private String password;
 	private String cellulare;
+	private String mezzo; //solo per il rider
 	
 	
+	public String getMezzo() {
+		return mezzo;
+	}
+	public void setMezzo(String mezzo) {
+		this.mezzo = mezzo;
+	}
 	public String getNome() {
 		return nome;
 	}

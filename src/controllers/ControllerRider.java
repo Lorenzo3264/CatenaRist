@@ -27,6 +27,7 @@ public class ControllerRider extends PadreController {
     	this.controller=controller;
     	winRider = new WinRider(this); 
     	try {
+    		riderDAO = new RiderDAO();
     		rider = riderDAO.fetchRider(controller.getAccount().getEmail());
     		super.setUtente(rider);
     	}catch (SQLException e) {
@@ -49,7 +50,7 @@ public class ControllerRider extends PadreController {
 
 	public void info() {
 		winRider.hide();
-		winInfoUpdate = new WinInfoUpdate(this);
+		winInfoUpdate = new WinInfoUpdate(this,true);
 		winInfoUpdate.show();
 	}
 
@@ -73,23 +74,23 @@ public class ControllerRider extends PadreController {
 		winRider.show();
 	}
 	
-//	@Override
-//	public void cambiaInfo(Utente utente) { 
-//		riderDAO = new RiderDAO();
-//		Rider riderEdit = new Rider(utente);
-//		try {
-//			clienteDAO.updateCliente(clienteEdit, cliente.getCodCl());
-//			JOptionPane.showMessageDialog(winInfoUpdate, "Modifica effettuata con successo", "Messaggio",
-//					JOptionPane.INFORMATION_MESSAGE);
-//			winInfoUpdate.hide();
-//			winCliente.show();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			JOptionPane.showMessageDialog(winInfoUpdate, "Ci sono errori nei valori inseriti", "Errore di input",
-//					JOptionPane.ERROR_MESSAGE);
-//		}
-//	}
+	@Override
+	public void cambiaInfo(Utente utente) { 
+		riderDAO = new RiderDAO();
+		Rider riderEdit = new Rider(utente);
+		try {
+			riderDAO.updateRider(riderEdit, rider.getCodR());
+			JOptionPane.showMessageDialog(winInfoUpdate, "Modifica effettuata con successo", "Messaggio",
+					JOptionPane.INFORMATION_MESSAGE);
+			winInfoUpdate.hide();
+			winRider.show();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(winInfoUpdate, "Ci sono errori nei valori inseriti", "Errore di input",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
 	
 	
 	

@@ -105,7 +105,7 @@ public class ControllerCliente extends PadreController {
 	}
 
 	public void info() {
-		winInfoUpdate = new WinInfoUpdate(this);
+		winInfoUpdate = new WinInfoUpdate(this,false);
 		winCliente.hide();
 		winInfoUpdate.show();
 	}

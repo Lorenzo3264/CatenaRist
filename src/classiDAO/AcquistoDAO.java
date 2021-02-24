@@ -28,6 +28,8 @@ public class AcquistoDAO {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement statement = con.createStatement();
 			statement.execute(sql);
+			statement.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
