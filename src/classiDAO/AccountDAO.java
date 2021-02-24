@@ -17,7 +17,7 @@ public class AccountDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM account WHERE (email = '"+email+"' AND password = '"+password+"')");
+			ResultSet rs = st.executeQuery("SELECT * FROM account WHERE (email ~~* '"+email+"' AND password = '"+password+"')");
 			rs.next();
 			account.setEmail(rs.getString("email"));
 			account.setPassword(rs.getString("password"));

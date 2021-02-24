@@ -16,6 +16,8 @@ import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
 import controllers.ControllerCliente;
+import controllers.ControllerRider;
+
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.AbstractAction;
@@ -224,4 +226,5 @@ public class WinOrdine extends JFrame {
 		contentPane.add(lbl_prezzomax);
 
 	}
+
 }

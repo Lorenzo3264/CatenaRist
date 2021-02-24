@@ -12,6 +12,14 @@ public class Rider extends Utente{
 	private String cellulare;
 	private String DataN;
 	
+	public Rider(Utente utente) {
+		this.nome = utente.getNome();
+		this.cognome = utente.getCognome();
+		this.email = utente.getEmail();
+		this.password = utente.getPassword();
+		this.cellulare = utente.getCellulare();
+		this.DataN = utente.getDataN();
+	}
 	//METODI
 	public int getCodR() {
 		return codR;

@@ -31,7 +31,7 @@ public class ClienteDAO {
 			e.printStackTrace();
 			throw new SQLException(e);
 		}
-		return cliente;// da cambiare
+		return cliente;
 		
 	}
 	

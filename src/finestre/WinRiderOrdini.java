@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controllers.ControllerRider;
+
 public class WinRiderOrdini extends JFrame {
 
 	private JPanel contentPane;
@@ -14,8 +16,9 @@ public class WinRiderOrdini extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param controllerRider 
 	 */
-	public WinRiderOrdini() {
+	public WinRiderOrdini(ControllerRider controllerRider) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
