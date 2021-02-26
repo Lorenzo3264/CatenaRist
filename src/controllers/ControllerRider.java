@@ -106,6 +106,21 @@ public class ControllerRider extends PadreController {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+	public void completaConsegna(String codC) {
+		consegnaDAO = new ConsegnaDAO();
+		try {
+			consegnaDAO.completaConsegna(codC);
+		}catch(SQLException e){
+			JOptionPane.showMessageDialog(winConsegne, "C'è stato un errore nel completamento.\n"+e.getLocalizedMessage(), "Errore",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public void consegnaBack() {
+		winConsegne.hide();
+		winRider.show();
+	}
 	
 	
 	

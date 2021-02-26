@@ -49,7 +49,7 @@ public class ConsegnaDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement statement = con.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT * FROM consegna WHERE codr = "+rider.getCodR()+";");
+			ResultSet rs = statement.executeQuery("SELECT * FROM consegna WHERE codr = "+rider.getCodR()+"AND datac is null;");
 			while(rs.next()) {
 				Consegna c = new Consegna();
 				c.setCodC(rs.getString("codc"));
@@ -96,10 +96,6 @@ public class ConsegnaDAO {
 				c.setNote(rs.getString("note"));
                 consegne.add(c);  			
 			}
-			int i;
-			for (i=0;i<consegne.size();i++) {
-				System.out.println(consegne.get(i).getVia());
-			}
 			rs.close();
 			statement.close();
 			con.close();
@@ -108,5 +104,18 @@ public class ConsegnaDAO {
 			throw new SQLException(e);
 		}
 		return consegne;
+	}
+
+	public void completaConsegna(String codC) throws SQLException {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
+			Statement st = con.createStatement();
+			st.execute("UPDATE consegna SET datac = current_timestamp WHERE codc = "+codC+";");
+			con.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException(e);
+		}
 	}
 }
