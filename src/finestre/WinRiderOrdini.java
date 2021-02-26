@@ -2,11 +2,13 @@ package finestre;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import classi.Consegna;
 import controllers.ControllerRider;
 
 public class WinRiderOrdini extends JFrame {
@@ -17,8 +19,9 @@ public class WinRiderOrdini extends JFrame {
 	/**
 	 * Create the frame.
 	 * @param controllerRider 
+	 * @param consegne 
 	 */
-	public WinRiderOrdini(ControllerRider controllerRider) {
+	public WinRiderOrdini(ControllerRider controllerRider, ArrayList<Consegna> consegne) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
