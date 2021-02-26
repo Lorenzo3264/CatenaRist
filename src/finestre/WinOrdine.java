@@ -74,7 +74,6 @@ public class WinOrdine extends JFrame {
 		int i = 0;
 		righe = new Object[prodotti.size()][8];
 
-		// controllare da qui la prossima volta
 		for (i = 0; i < prodotti.size(); i++) {
 
 			righe[i][0] = prodotti.get(i).getCodP();

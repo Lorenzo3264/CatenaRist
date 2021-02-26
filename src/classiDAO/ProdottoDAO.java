@@ -17,7 +17,7 @@ public class ProdottoDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM prodotto");
+			ResultSet rs = st.executeQuery("SELECT * FROM prodotto ORDER BY tipo, prezzo");
 			while(rs.next()) {
 				Prodotto prodotto = new Prodotto();
 				prodotto.setCodP(rs.getInt("codp"));
