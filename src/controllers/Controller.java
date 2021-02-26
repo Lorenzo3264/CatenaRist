@@ -46,7 +46,6 @@ public class Controller {
 	public void login(String email, String password) {
 		//codice per confrontare i dati in account
 		//bisogna fare richiesta al database di trovare la riga giusta di account, sollevare un eccezione in caso non ci fosse
-		//passare alla schermata giusta in base al tipo di permessi
 		try {
 			accountDAO = new AccountDAO();
 			account = accountDAO.fetchAccount(email, password);
@@ -57,6 +56,10 @@ public class Controller {
 			else if (account.getPermessi().equals("codR")) {
 				winLogin.hide();
 				controllerRider = new ControllerRider(this);
+			}
+			else if (account.getPermessi().equals("codM")) {
+				winLogin.hide();
+				controllerManager = new ControllerManager(this);
 			}
 			
 		}catch(SQLException e) {

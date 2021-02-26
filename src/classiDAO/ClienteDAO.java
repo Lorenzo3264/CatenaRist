@@ -27,11 +27,10 @@ public class ClienteDAO {
 			st.close();
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new SQLException(e);
 		}
-		return cliente;// da cambiare
+		return cliente;
 		
 	}
 	
@@ -49,7 +48,6 @@ public class ClienteDAO {
 	}
 
 	public void updateCliente(Cliente clienteEdit, String codCl) throws SQLException {
-		// TODO Auto-generated method stub
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
@@ -57,7 +55,6 @@ public class ClienteDAO {
 			con.close();
 			st.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new SQLException(e);
 		}

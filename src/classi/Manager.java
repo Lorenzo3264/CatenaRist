@@ -12,6 +12,16 @@ public class Manager extends Utente {
 	private String cellulare;
 	private String dataN;
 	
+	public Manager(Utente utente) {
+		nome = utente.getNome();
+		cognome = utente.getCognome();
+		email = utente.getEmail();
+		password = utente.getPassword();
+		cellulare = utente.getCellulare();
+		dataN = utente.getDataN();
+	}
+	public Manager() {}
+	
 	//METODI
 	public int getCodM() {
 		return codM;
