@@ -16,7 +16,12 @@ public class ConsegnaDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
-			st.execute("INSERT INTO consegna VALUES("+consegna.getCodC()+","+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"','"+consegna.getCodCarta()+"','"+consegna.getNote()+"','"+consegna.getVia()+"','"+consegna.getCivico()+"')");
+			if(consegna.getMetodoP().equals("cartaC")) {
+				st.execute("INSERT INTO consegna VALUES("+consegna.getCodC()+","+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"','"+consegna.getCodCarta()+"','"+consegna.getNote()+"','"+consegna.getVia()+"','"+consegna.getCivico()+"')");	
+			}else {
+				st.execute("INSERT INTO consegna VALUES("+consegna.getCodC()+","+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"',NULL,'"+consegna.getNote()+"','"+consegna.getVia()+"','"+consegna.getCivico()+"')");
+			}
+			
 			con.close();
 			st.close();
 		} catch (SQLException e) {
@@ -111,6 +116,19 @@ public class ConsegnaDAO {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
 			st.execute("UPDATE consegna SET datac = current_timestamp WHERE codc = "+codC+";");
+			con.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException(e);
+		}
+	}
+
+	public void prendiOrdine(String codC, int codR) throws SQLException {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
+			Statement st = con.createStatement();
+			st.execute("UPDATE consegna SET codr = "+codR+" WHERE codc = "+codC+";");
 			con.close();
 			st.close();
 		} catch (SQLException e) {

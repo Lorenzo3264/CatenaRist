@@ -127,7 +127,8 @@ public class WinConferma extends JFrame {
 							txt_codcarta.setText("");
 						}else {
 							// necessario per fare in modo che ci siano solo numeri
-							consegna.setCodCarta(String.valueOf(Float.parseFloat(txt_codcarta.getText())));
+							String.valueOf(Long.parseLong(txt_codcarta.getText()));
+							consegna.setCodCarta(txt_codcarta.getText());
 						}
 						
 

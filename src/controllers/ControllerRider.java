@@ -121,6 +121,21 @@ public class ControllerRider extends PadreController {
 		winConsegne.hide();
 		winRider.show();
 	}
+
+	public void prendiOrdine(String codC) {
+		consegnaDAO = new ConsegnaDAO();
+		try {
+			consegnaDAO.prendiOrdine(codC, rider.getCodR());
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(winRiderOrdini, "C'è stato un errore nel tentativo di prendere l'ordine.\n"+e.getLocalizedMessage(), "Errore",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public void ordineBack() {
+		winRiderOrdini.hide();
+		winRider.show();
+	}
 	
 	
 	

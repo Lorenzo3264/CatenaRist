@@ -118,8 +118,8 @@ public class WinSignin extends JFrame {
 					cliente.setEmail(txt_email.getText());
 					cliente.setCellulare(txt_cellulare.getText());
 					cliente.setPassword(psw_password.getText());
-					Date data = (Date) datePanel.getModel().getValue();
-					cliente.setDataN(((data.getMonth()+1))+"-"+data.getDate()+"-"+(data.getYear()+1900)); // da rivedere gestione delle date.
+					Date data = (Date) datePanel.getModel().getValue();					
+					cliente.setDataN(((data.getYear()+1900))+"-"+(data.getMonth()+1)+"-"+data.getDate());
 					if (cliente.getNome().isBlank() || cliente.getCognome().isBlank() || cliente.getEmail().isBlank() || cliente.getPassword().isBlank() || cliente.getCellulare().isBlank()) {
 						JOptionPane.showMessageDialog(contentPane,
 							    "Hai mancato un campo",
