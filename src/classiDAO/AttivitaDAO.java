@@ -41,7 +41,7 @@ public class AttivitaDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("SELECT coda, oraria, via, civico FROM attivita NATURAL JOIN collaborazioni WHERE codR='"+rider.getCodR()+"';");
+			ResultSet rs = st.executeQuery("SELECT coda, oraria, via, civico FROM attivita NATURAL JOIN collaborazione WHERE codR='"+rider.getCodR()+"';");
 			while(rs.next()) {
 				Attivita a = new Attivita();
 				a.setCodA(rs.getInt("coda"));

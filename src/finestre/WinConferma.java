@@ -16,6 +16,7 @@ import classi.Consegna;
 import controllers.ControllerCliente;
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
 
 public class WinConferma extends JFrame {
 
@@ -52,6 +54,10 @@ public class WinConferma extends JFrame {
 		contentPane.setLayout(null);
 		ArrayList<Attivita> attivita = controller.getAttivita();
 
+		JEditorPane txt_note = new JEditorPane();
+		txt_note.setBounds(10, 300, 414, 114);
+		contentPane.add(txt_note);
+		
 		float prezzoTot = controller.getPrezzoTot();
 		// prova per le attività
 
@@ -60,6 +66,7 @@ public class WinConferma extends JFrame {
 		for (i = 0; i < attivita.size(); i++) {
 			att[i] = attivita.get(i).getVia() + " " + attivita.get(i).getCivico() + " ~ " + attivita.get(i).getOrariA();
 		}
+		
 		JComboBox cb_attivita = new JComboBox(att);
 		cb_attivita.setBounds(207, 225, 217, 23);
 		contentPane.add(cb_attivita);
@@ -101,10 +108,6 @@ public class WinConferma extends JFrame {
 		JLabel lbl_civico = new JLabel("inserisci civico");
 		lbl_civico.setBounds(14, 86, 105, 14);
 		contentPane.add(lbl_civico);
-
-		JTextPane txt_note = new JTextPane();
-		txt_note.setBounds(10, 300, 414, 114);
-		contentPane.add(txt_note);
 
 		JButton btn_conferma = new JButton("Conferma");
 		btn_conferma.addActionListener(new ActionListener() {
@@ -198,6 +201,8 @@ public class WinConferma extends JFrame {
 		});
 
 		rb_contanti.setSelected(true);
+		
+		
 
 	}
 

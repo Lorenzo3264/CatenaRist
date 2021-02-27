@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -61,7 +62,11 @@ public class WinRiderOrdini extends JFrame {
 			righe[i][2] = consegne.get(i).getCivico();
 			righe[i][3] = consegne.get(i).getPrezzo();
 			righe[i][4] = consegne.get(i).getMetodoP();
-			righe[i][5] = consegne.get(i).getNote();
+			if(Objects.isNull(consegne.get(i).getNote())) {
+				righe[i][5] = "non ci sono note";
+			}else {
+				righe[i][5] = "vedi note";
+			}
 			righe[i][6] = "Prendi incarico";
 		}
 
@@ -74,7 +79,7 @@ public class WinRiderOrdini extends JFrame {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				switch (column) {
-				case 6:
+				case 5, 6:
 					return true;
 				default:
 					return false;
@@ -104,8 +109,28 @@ public class WinRiderOrdini extends JFrame {
 				}
 			}
 		};
+		
+		Action vediNote = new AbstractAction() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JTable table = (JTable) e.getSource();
+				int modelRow = Integer.valueOf(e.getActionCommand());
+				JOptionPane.showMessageDialog(contentPane, consegne.get(modelRow).getNote(), "nota",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		};
+		
+		tbl_consegne.getColumnModel().getColumn(1).setPreferredWidth(120);
+		tbl_consegne.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tbl_consegne.getColumnModel().getColumn(3).setPreferredWidth(70);
+		tbl_consegne.getColumnModel().getColumn(4).setPreferredWidth(120);
+		tbl_consegne.getColumnModel().getColumn(5).setPreferredWidth(300);
+		tbl_consegne.getColumnModel().getColumn(6).setPreferredWidth(300);
+		
 		ButtonColumn btn_aggiungi = new ButtonColumn(tbl_consegne, completa, 6);
+		ButtonColumn btn_note = new ButtonColumn(tbl_consegne,vediNote, 5);
 		TableColumnModel tcm = tbl_consegne.getColumnModel();
 		tcm.removeColumn(tcm.getColumn(0));
 		JScrollPane jsp_consegne = new JScrollPane(tbl_consegne);

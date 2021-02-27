@@ -12,7 +12,7 @@ import classi.Rider;
 
 public class ConsegnaDAO {
 
-	public void insertConsegna(Consegna consegna) {
+	public void insertConsegna(Consegna consegna) throws SQLException {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
@@ -25,8 +25,7 @@ public class ConsegnaDAO {
 			con.close();
 			st.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new SQLException(e);
 		}
 	}
 
@@ -54,7 +53,7 @@ public class ConsegnaDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement statement = con.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT * FROM consegna WHERE codr = "+rider.getCodR()+"AND datac is null;");
+			ResultSet rs = statement.executeQuery("SELECT * FROM consegna WHERE codr = "+rider.getCodR()+" AND datac is null;");
 			while(rs.next()) {
 				Consegna c = new Consegna();
 				c.setCodC(rs.getString("codc"));
@@ -135,5 +134,36 @@ public class ConsegnaDAO {
 			e.printStackTrace();
 			throw new SQLException(e);
 		}
+	}
+
+	public ArrayList<Consegna> fetchConsegne(int codA) throws SQLException {
+		ArrayList<Consegna> consegne = new ArrayList<Consegna>();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
+			Statement statement = con.createStatement();
+			ResultSet rs = statement.executeQuery("SELECT * FROM consegna WHERE coda = "+codA+";");
+			while(rs.next()) {
+				Consegna c = new Consegna();
+				c.setCodC(rs.getString("codc"));
+				c.setCodA(rs.getInt("coda"));
+				c.setCodCl(rs.getInt("codcl"));
+				c.setCodR(rs.getInt("codr"));
+				c.setDataO(rs.getString("datao"));
+				c.setDataC(rs.getString("datac"));
+				c.setVia(rs.getString("via"));
+				c.setCivico(rs.getString("civico"));
+				c.setMetodoP(rs.getString("metodop"));
+				c.setPrezzo(rs.getFloat("prezzo"));
+				c.setNote(rs.getString("note"));
+                consegne.add(c);		
+			}
+			rs.close();
+			statement.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException(e);
+		}
+		return consegne;
 	}
 }

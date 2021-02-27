@@ -35,6 +35,7 @@ public class WinManager extends JFrame {
 		JButton btn_ordini = new JButton("Visualizza ordini");
 		btn_ordini.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				controller.visualizzaOrdini();
 			}
 		});
 		contentPane.add(btn_ordini);

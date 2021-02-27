@@ -1,6 +1,7 @@
 package controllers;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -12,13 +13,13 @@ import finestre.*;
 public class ControllerManager extends PadreController {
 	
 	private Controller controller;
-	private Consegna consegna;
+	private ArrayList<Consegna> consegne;
 	private ConsegnaDAO consegnaDAO;
 	private Attivita attivita;
 	private AttivitaDAO attivitaDAO;
 	private Acquisto acquisto;
 	private AcquistoDAO acquistoDAO;
-	private Prodotto prodotto;
+	private ArrayList<Prodotto> prodotti;
 	private ProdottoDAO prodottoDAO;
 	private Dipendente dipendente;
 	private DipendenteDAO dipendenteDAO;
@@ -41,7 +42,7 @@ public class ControllerManager extends PadreController {
     		e.printStackTrace();
     	};
     	winManager = new WinManager(this);
-    	winManager.show();
+    	winManager.setVisible(true);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class ControllerManager extends PadreController {
 			JOptionPane.showMessageDialog(winInfoUpdate, "Modifica effettuata con successo", "Messaggio",
 					JOptionPane.INFORMATION_MESSAGE);
 			winInfoUpdate.hide();
-			winManager.show();
+			winManager.setVisible(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,7 +86,22 @@ public class ControllerManager extends PadreController {
 	public void info() {
 		winInfoUpdate = new WinInfoUpdate(this, false);
 		winManager.hide();
-		winInfoUpdate.show();
+		winInfoUpdate.setVisible(true);
+	}
+
+	public void visualizzaOrdini() {
+		consegnaDAO = new ConsegnaDAO();
+		prodottoDAO = new ProdottoDAO();
+		try {
+			consegne = consegnaDAO.fetchConsegne(manager.getCodA());
+			prodotti = prodottoDAO.fetchProdotto(manager.getCodA());
+			//fare fetch per la classe acquisto (deve diventare ArrayList)
+			winIncarichi = new WinIncarichi(this, consegne, prodotti);
+			winManager.setVisible(false);
+			winIncarichi.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
     

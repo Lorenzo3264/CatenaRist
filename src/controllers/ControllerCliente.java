@@ -99,7 +99,7 @@ public class ControllerCliente extends PadreController {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(winConferma, "Ci sono errori nei valori inseriti", "Errore di input",
+			JOptionPane.showMessageDialog(winConferma, "Ci sono errori nei valori inseriti\n"+e.getLocalizedMessage(), "Errore di input",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
