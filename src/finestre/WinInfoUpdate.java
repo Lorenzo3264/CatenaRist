@@ -139,8 +139,16 @@ public class WinInfoUpdate extends JFrame {
 			}
 			try {
 				Date data = (Date) datePanel.getModel().getValue();
-				utente.setDataN((data.getMonth()+1)+"-"+data.getDate()+"-"+(data.getYear()+1900));
-				controller.cambiaInfo(utente);
+				if(data.after(new Date())){
+					JOptionPane.showMessageDialog(contentPane,
+						    "Inserisci una data precedente a quella di oggi",
+						    "Errore di input",
+						    JOptionPane.ERROR_MESSAGE);
+				}else {
+					utente.setDataN(((data.getYear()+1900))+"-"+(data.getMonth()+1)+"-"+data.getDate());
+					controller.cambiaInfo(utente);
+				}
+				
 			} catch (NullPointerException e1) {
 				e1.printStackTrace();
 				JOptionPane.showMessageDialog(contentPane, "Inserisci una data di nascita", "Errore di input",
