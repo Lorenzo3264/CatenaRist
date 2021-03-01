@@ -25,6 +25,7 @@ public class ConsegnaDAO {
 			con.close();
 			st.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new SQLException(e);
 		}
 	}
@@ -41,7 +42,6 @@ public class ConsegnaDAO {
 			statement.close();
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new SQLException(e);
 		}

@@ -42,6 +42,11 @@ public class WinManager extends JFrame {
 		contentPane.add(btn_ordini);
 		
 		JButton btn_dipendenti = new JButton("Visualizza dipendenti");
+		btn_dipendenti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controllerManager.visualizzaDipendenti();
+			}
+		});
 		contentPane.add(btn_dipendenti);
 		
 		JButton btn_update = new JButton("Cambia informazioni account");

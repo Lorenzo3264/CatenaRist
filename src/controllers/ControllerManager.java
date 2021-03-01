@@ -21,7 +21,7 @@ public class ControllerManager extends PadreController {
 	private AcquistoDAO acquistoDAO;
 	private ArrayList<Prodotto> prodotti;
 	private ProdottoDAO prodottoDAO;
-	private Dipendente dipendente;
+	private ArrayList<Dipendente> dipendenti;
 	private DipendenteDAO dipendenteDAO;
 	private Manager manager;
 	private ManagerDAO managerDAO;
@@ -100,8 +100,9 @@ public class ControllerManager extends PadreController {
 			winIncarichi = new WinIncarichi(this, consegne, prodotti, acquisti);
 			winManager.setVisible(false);
 			winIncarichi.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(winManager, "C'è stato un errore nel database", "Errore",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -109,10 +110,45 @@ public class ControllerManager extends PadreController {
 		winIncarichi.setVisible(false);
 		winManager.setVisible(true);
 	}
+
+	public void visualizzaDipendenti() {
+		winManager.setVisible(false);
+		dipendenteDAO = new DipendenteDAO();
+		try {
+			dipendenti = dipendenteDAO.fetchDipendete(manager.getCodA());
+			winDipendenti = new WinDipendenti(this,dipendenti);
+			winDipendenti.setVisible(true);
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(winManager, "C'è stato un errore nel database", "Errore",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public void licenziaDipendente(int codD) {
+		dipendenteDAO = new DipendenteDAO();
+		try {
+			dipendenteDAO.deleteDipendente(codD);
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(winManager, "C'è stato un errore nel database", "Errore",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public void modificaDipendente(Dipendente dipendente) {
+		winDipendenti.setVisible(false);
+		winDipUpdate = new WinDipUpdate(this, dipendente);
+		winDipUpdate.setVisible(true);
+	}
 	
 	public void infoBack() {
 	    winInfoUpdate.setVisible(false);
 	    winManager.setVisible(true);
+	}
+
+	public void assumiDipendente() {
+		winDipendenti.setVisible(false);
+		winDipInsert = new WinDipInsert(this);
+		winDipInsert.setVisible(true);
 	}
 	
     

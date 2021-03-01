@@ -114,7 +114,6 @@ public class WinInfoUpdate extends JFrame {
 		p.put("text.today", "Oggi");
 		p.put("text.month", "Mese");
 		p.put("text.year", "Anno");
-		System.out.println(controller.getUtente().getDataN());
 		int year = Integer.parseInt(controller.getUtente().getDataN().substring(0, 4));
 		int month = Integer.parseInt(controller.getUtente().getDataN().substring(5, 7));
 		int day = Integer.parseInt(controller.getUtente().getDataN().substring(8, 10));

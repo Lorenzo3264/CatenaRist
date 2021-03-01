@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import classi.Dipendente;
+import controllers.ControllerManager;
+
 public class WinDipUpdate extends JFrame {
 
 	private JPanel contentPane;
@@ -15,8 +18,10 @@ public class WinDipUpdate extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param dipendente 
+	 * @param controllerManager 
 	 */
-	public WinDipUpdate() {
+	public WinDipUpdate(ControllerManager controllerManager, Dipendente dipendente) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
