@@ -110,5 +110,10 @@ public class ControllerManager extends PadreController {
 		winManager.setVisible(true);
 	}
 	
+	public void infoBack() {
+	    winInfoUpdate.setVisible(false);
+	    winManager.setVisible(true);
+	}
+	
     
 }

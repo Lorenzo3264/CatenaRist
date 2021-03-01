@@ -116,8 +116,16 @@ public class WinRiderOrdini extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
-				JOptionPane.showMessageDialog(contentPane, consegne.get(modelRow).getNote(), "nota",
+				if(Objects.isNull(consegne.get(modelRow).getNote())) 
+				{
+				JOptionPane.showMessageDialog(contentPane, "non ci sono note", "nota",
 						JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(contentPane, consegne.get(modelRow).getNote(), "nota",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 			
 		};

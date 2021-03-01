@@ -72,7 +72,7 @@ public class WinIncarichi extends JFrame {
 			righe[i][4] = consegne.get(i).getMetodoP();
 			if (Integer.compare(consegne.get(i).getCodR(), 0) == 0) {
 				righe[i][5] = "ordinato";
-			} else if (consegne.get(i).getDataC().equals("null")) {
+			} else if (Objects.isNull(consegne.get(i).getDataC())) { 
 				righe[i][5] = "in consegna";
 			} else {
 				righe[i][5] = "consegnato";
@@ -154,14 +154,18 @@ public class WinIncarichi extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
-				if(consegne.get(modelRow).getNote().isBlank()) {
-					JOptionPane.showMessageDialog(contentPane, "Non ci sono note", "nota",
-							JOptionPane.INFORMATION_MESSAGE);
-				}else {
+				if(Objects.isNull(consegne.get(modelRow).getNote())) 
+				{
+				JOptionPane.showMessageDialog(contentPane, "non ci sono note", "nota",
+						JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
 					JOptionPane.showMessageDialog(contentPane, consegne.get(modelRow).getNote(), "nota",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
+			
 		};
 
 		tbl_ordini.getColumnModel().getColumn(6).setPreferredWidth(120);
