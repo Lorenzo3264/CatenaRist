@@ -17,7 +17,7 @@ public class ControllerManager extends PadreController {
 	private ConsegnaDAO consegnaDAO;
 	private Attivita attivita;
 	private AttivitaDAO attivitaDAO;
-	private Acquisto acquisto;
+	private ArrayList<Acquisto> acquisti;
 	private AcquistoDAO acquistoDAO;
 	private ArrayList<Prodotto> prodotti;
 	private ProdottoDAO prodottoDAO;
@@ -92,16 +92,22 @@ public class ControllerManager extends PadreController {
 	public void visualizzaOrdini() {
 		consegnaDAO = new ConsegnaDAO();
 		prodottoDAO = new ProdottoDAO();
+		acquistoDAO = new AcquistoDAO();
 		try {
 			consegne = consegnaDAO.fetchConsegne(manager.getCodA());
-			prodotti = prodottoDAO.fetchProdotto(manager.getCodA());
-			//fare fetch per la classe acquisto (deve diventare ArrayList)
-			winIncarichi = new WinIncarichi(this, consegne, prodotti);
+			prodotti = prodottoDAO.fetchProdotto();
+			acquisti = acquistoDAO.fetchAcquisto(manager.getCodA());
+			winIncarichi = new WinIncarichi(this, consegne, prodotti, acquisti);
 			winManager.setVisible(false);
 			winIncarichi.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void incarichiBack() {
+		winIncarichi.setVisible(false);
+		winManager.setVisible(true);
 	}
 	
     

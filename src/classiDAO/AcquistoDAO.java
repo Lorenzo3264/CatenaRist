@@ -1,17 +1,39 @@
 package classiDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import classi.Acquisto;
+import classi.Prodotto;
 
 public class AcquistoDAO {
 
-	public boolean fetchAcquisto() { //con le liste?
-		return false;// da cambiare
+	public ArrayList<Acquisto> fetchAcquisto(int codA) throws SQLException {
+		ArrayList<Acquisto> acquisti = new ArrayList<Acquisto>();
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist", "postgres",
+					"admin");
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT A.codc, A.codp, quantita FROM acquisto AS A JOIN consegna AS C ON A.codc = C.codc WHERE C.coda = "+codA+";");
+			while (rs.next()) {
+				Acquisto acquisto = new Acquisto();
+				acquisto.setCodC(rs.getInt("codc"));
+				acquisto.setCodP(rs.getInt("codp"));
+				acquisto.setQuantita(rs.getInt("quantita"));
+				acquisti.add(acquisto);
+			}
+			rs.close();
+			st.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("errore nella connessione: \n" + e);
+			throw new SQLException(e);
+		}
+		return acquisti;// da cambiare
 	}
 	
 	public void insertAcquisto(ArrayList<Acquisto> acquisto, int codC) throws SQLException {
