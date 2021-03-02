@@ -16,7 +16,7 @@ public class DipendenteDAO {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist", "postgres",
 					"admin");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM dipendente WHERE coda = '" + codA + "'");
+			ResultSet rs = st.executeQuery("SELECT * FROM dipendente WHERE coda = '" + codA + "' ORDER BY codd");
 			while (rs.next()) {
 				Dipendente dipendente = new Dipendente();
 				dipendente.setCodA(codA);

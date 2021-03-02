@@ -77,7 +77,7 @@ public class WinIncarichi extends JFrame {
 			} else {
 				righe[i][5] = "consegnato";
 			}
-			if (Objects.isNull(consegne.get(i).getNote()) || consegne.get(i).getNote().isBlank()) {
+			if (Objects.isNull(consegne.get(i).getNote())) {
 				righe[i][6] = "non ci sono note";
 			} else {
 				righe[i][6] = "vedi note";

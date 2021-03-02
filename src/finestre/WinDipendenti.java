@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import classi.Dipendente;
 import controllers.ControllerManager;
@@ -44,6 +45,11 @@ public class WinDipendenti extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btn_indietro = new JButton("indietro");
+		btn_indietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controllerManager.dipendentiBack();
+			}
+		});
 		btn_indietro.setBounds(10, 384, 140, 23);
 		contentPane.add(btn_indietro);
 
@@ -125,6 +131,8 @@ public class WinDipendenti extends JFrame {
 		ButtonColumn btn_visualizzaDipendente = new ButtonColumn(tbl_dipendenti,visualizzaDipendente, 3);
 		ButtonColumn btn_modificaDipendente = new ButtonColumn(tbl_dipendenti, modificaDipendente, 4);
 		ButtonColumn btn_licenziaDipendente = new ButtonColumn(tbl_dipendenti, licenziaDipendente, 5);
+		TableColumnModel tcm = tbl_dipendenti.getColumnModel();
+		tcm.removeColumn(tcm.getColumn(0));
 		JScrollPane jsp_dipendenti = new JScrollPane(tbl_dipendenti);
 		jsp_dipendenti.setBounds(10, 11, 629, 358);
 		contentPane.add(jsp_dipendenti);

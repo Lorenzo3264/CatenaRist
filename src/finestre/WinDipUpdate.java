@@ -125,7 +125,7 @@ public class WinDipUpdate extends JFrame {
 		JButton btn_indietro = new JButton("indietro");
 		btn_indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controllerManager.dipInsertExit();
+				controllerManager.dipUpdateExit();
 			}
 		});
 		btn_indietro.setBounds(10, 417, 102, 23);
@@ -148,7 +148,6 @@ public class WinDipUpdate extends JFrame {
 		JButton btn_conferma = new JButton("Modifica");
 		btn_conferma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Dipendente dipendente = new Dipendente();
 				dipendente.setNome(txt_nome.getText());
 				dipendente.setCognome(txt_cognome.getText());
 				dipendente.setVia(txt_via.getText());

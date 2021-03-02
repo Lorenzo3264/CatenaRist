@@ -197,6 +197,24 @@ public class ControllerManager extends PadreController {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+	public void dipUpdateExit() {
+		dipendenteDAO = new DipendenteDAO();
+		try {
+			dipendenti = dipendenteDAO.fetchDipendete(manager.getCodA());
+			winDipendenti = new WinDipendenti(this,dipendenti);
+			winDipUpdate.setVisible(false);
+			winDipendenti.setVisible(true);
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(winManager, "C'è stato un errore nel database", "Errore",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public void dipendentiBack() {
+		winDipendenti.setVisible(false);
+		winManager.setVisible(true);
+	}
 	
     
 }
