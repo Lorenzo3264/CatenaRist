@@ -32,14 +32,16 @@ public class WinConsegne extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tbl_consegne;
+	private ControllerRider controllerRider;
 
 	/**
 	 * Create the frame.
 	 * 
-	 * @param controllerRider
+	 * @param controller
 	 * @param consegne
 	 */
-	public WinConsegne(ControllerRider controllerRider, ArrayList<Consegna> consegne) {
+	public WinConsegne(ControllerRider controller, ArrayList<Consegna> consegne) {
+		controllerRider = controller;
 		setResizable(false);
 		setTitle("Consegne prese in carico");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

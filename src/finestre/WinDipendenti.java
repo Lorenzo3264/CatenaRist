@@ -27,14 +27,16 @@ public class WinDipendenti extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tbl_dipendenti;
+	private ControllerManager controllerManager;
 
 	/**
 	 * Create the frame.
 	 * 
 	 * @param dipendenti
-	 * @param controllerManager
+	 * @param controller
 	 */
-	public WinDipendenti(ControllerManager controllerManager, ArrayList<Dipendente> dipendenti) {
+	public WinDipendenti(ControllerManager controller, ArrayList<Dipendente> dipendenti) {
+		controllerManager = controller;
 		setTitle("Dipendenti");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

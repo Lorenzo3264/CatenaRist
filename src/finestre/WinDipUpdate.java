@@ -31,14 +31,16 @@ public class WinDipUpdate extends JFrame {
 	private JTextField txt_cellulare;
 	private JTextField txt_via;
 	private JTextField txt_civico;
+	private ControllerManager controllerManager;
 	
 
 	/**
 	 * Create the frame.
 	 * @param dipendente 
-	 * @param controllerManager 
+	 * @param controller
 	 */
-	public WinDipUpdate(ControllerManager controllerManager, Dipendente dipendente) {
+	public WinDipUpdate(ControllerManager controller, Dipendente dipendente) {
+		controllerManager = controller;
 		setTitle("Assumi dipendente");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

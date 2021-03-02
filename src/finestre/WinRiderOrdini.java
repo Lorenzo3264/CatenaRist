@@ -27,14 +27,16 @@ public class WinRiderOrdini extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tbl_consegne;
-
+	private ControllerRider controllerRider;
 
 	/**
 	 * Create the frame.
-	 * @param controllerRider 
-	 * @param consegne 
+	 * 
+	 * @param controller
+	 * @param consegne
 	 */
-	public WinRiderOrdini(ControllerRider controllerRider, ArrayList<Consegna> consegne) {
+	public WinRiderOrdini(ControllerRider controller, ArrayList<Consegna> consegne) {
+		controllerRider = controller;
 		setTitle("Scegli l'incarico");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +45,7 @@ public class WinRiderOrdini extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton btn_indietro = new JButton("indietro");
 		btn_indietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -52,8 +54,8 @@ public class WinRiderOrdini extends JFrame {
 		});
 		btn_indietro.setBounds(10, 360, 144, 23);
 		contentPane.add(btn_indietro);
-		
-		String[] colonne = { "codC", "via", "civico", "prezzo","pagamento","note", "" };
+
+		String[] colonne = { "codC", "via", "civico", "prezzo", "pagamento", "note", "" };
 		Object[][] righe = new Object[consegne.size()][7];
 		int i;
 		for (i = 0; i < consegne.size(); i++) {
@@ -62,9 +64,9 @@ public class WinRiderOrdini extends JFrame {
 			righe[i][2] = consegne.get(i).getCivico();
 			righe[i][3] = consegne.get(i).getPrezzo();
 			righe[i][4] = consegne.get(i).getMetodoP();
-			if(Objects.isNull(consegne.get(i).getNote())) {
+			if (Objects.isNull(consegne.get(i).getNote())) {
 				righe[i][5] = "non ci sono note";
-			}else {
+			} else {
 				righe[i][5] = "vedi note";
 			}
 			righe[i][6] = "Prendi incarico";
@@ -101,7 +103,7 @@ public class WinRiderOrdini extends JFrame {
 					((DefaultTableModel) table.getModel()).removeRow(modelRow);
 					controllerRider.prendiOrdine(codC);
 					tbl_consegne.revalidate();
-					if(Integer.compare(tbl_consegne.getModel().getRowCount(),1) < 0) {
+					if (Integer.compare(tbl_consegne.getModel().getRowCount(), 1) < 0) {
 						JOptionPane.showMessageDialog(contentPane, "Non ci sono più ordini", "Messaggio",
 								JOptionPane.INFORMATION_MESSAGE);
 						controllerRider.ordineBack();
@@ -109,36 +111,33 @@ public class WinRiderOrdini extends JFrame {
 				}
 			}
 		};
-		
+
 		Action vediNote = new AbstractAction() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
-				if(Objects.isNull(consegne.get(modelRow).getNote())) 
-				{
-				JOptionPane.showMessageDialog(contentPane, "non ci sono note", "nota",
-						JOptionPane.INFORMATION_MESSAGE);
-				}
-				else
-				{
+				if (Objects.isNull(consegne.get(modelRow).getNote())) {
+					JOptionPane.showMessageDialog(contentPane, "non ci sono note", "nota",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
 					JOptionPane.showMessageDialog(contentPane, consegne.get(modelRow).getNote(), "nota",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
-			
+
 		};
-		
+
 		tbl_consegne.getColumnModel().getColumn(1).setPreferredWidth(120);
 		tbl_consegne.getColumnModel().getColumn(2).setPreferredWidth(100);
 		tbl_consegne.getColumnModel().getColumn(3).setPreferredWidth(70);
 		tbl_consegne.getColumnModel().getColumn(4).setPreferredWidth(120);
 		tbl_consegne.getColumnModel().getColumn(5).setPreferredWidth(300);
 		tbl_consegne.getColumnModel().getColumn(6).setPreferredWidth(300);
-		
+
 		ButtonColumn btn_aggiungi = new ButtonColumn(tbl_consegne, completa, 6);
-		ButtonColumn btn_note = new ButtonColumn(tbl_consegne,vediNote, 5);
+		ButtonColumn btn_note = new ButtonColumn(tbl_consegne, vediNote, 5);
 		TableColumnModel tcm = tbl_consegne.getColumnModel();
 		tcm.removeColumn(tcm.getColumn(0));
 		JScrollPane jsp_consegne = new JScrollPane(tbl_consegne);

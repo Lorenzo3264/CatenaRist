@@ -31,14 +31,16 @@ public class WinDipInsert extends JFrame {
 	private JTextField txt_cellulare;
 	private JTextField txt_via;
 	private JTextField txt_civico;
+	private ControllerManager controllerManager;
 
 	
 
 	/**
 	 * Create the frame.
-	 * @param controllerManager 
+	 * @param controller 
 	 */
-	public WinDipInsert(ControllerManager controllerManager) {
+	public WinDipInsert(ControllerManager controller) {
+		controllerManager = controller;
 		setTitle("Assumi dipendente");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
