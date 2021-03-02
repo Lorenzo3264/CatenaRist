@@ -52,7 +52,7 @@ public class WinInfoUpdate extends JFrame {
 		
 		String[] mezzi = {"moto", "macchina", "furgone"};
 		JComboBox cb_mezzo = new JComboBox(mezzi);
-		cb_mezzo.setBounds(10, 400, 485, 20);
+		cb_mezzo.setBounds(10, 419, 485, 20);
 		if(hasMezzi) {
 			contentPane.add(cb_mezzo);
 		}
@@ -105,7 +105,7 @@ public class WinInfoUpdate extends JFrame {
 		lbl_cellulare.setBounds(10, 150, 120, 14);
 		contentPane.add(lbl_cellulare);
 		
-		JLabel lbl = new JLabel("Data di nascita:");
+		JLabel lbl = new JLabel("Data di nascita: "+controller.getUtente().getDataN());
 		lbl.setBounds(20, 178, 120, 14);
 		contentPane.add(lbl);
 		
@@ -134,7 +134,6 @@ public class WinInfoUpdate extends JFrame {
 			utente.setPassword(psw_password.getText());
 			if(hasMezzi) {
 				utente.setMezzo((String)cb_mezzo.getSelectedItem());
-				System.out.println("mezzo uguale a "+utente.getMezzo());
 			}
 			try {
 				Date data = (Date) datePanel.getModel().getValue();

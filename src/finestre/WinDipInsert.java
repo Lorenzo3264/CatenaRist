@@ -2,6 +2,7 @@ package finestre;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.JFrame;
@@ -11,11 +12,15 @@ import javax.swing.border.EmptyBorder;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import classi.Dipendente;
 import controllers.ControllerManager;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class WinDipInsert extends JFrame {
 
@@ -97,7 +102,8 @@ public class WinDipInsert extends JFrame {
 		lbl_civico.setBounds(10, 169, 102, 14);
 		contentPane.add(lbl_civico);
 		
-		JComboBox cb_ruolo = new JComboBox();
+		String[] ruoli = {"chef", "cuoco", "lavapiatti","cameriere","direttore di sala"}; //direttore di sala = direttoreSala
+		JComboBox cb_ruolo = new JComboBox(ruoli);
 		cb_ruolo.setBounds(122, 362, 382, 20);
 		contentPane.add(cb_ruolo);
 		
@@ -106,6 +112,11 @@ public class WinDipInsert extends JFrame {
 		contentPane.add(lbl_ruolo);
 		
 		JButton btn_indietro = new JButton("indietro");
+		btn_indietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controllerManager.dipInsertExit();
+			}
+		});
 		btn_indietro.setBounds(10, 417, 102, 23);
 		contentPane.add(btn_indietro);
 		
@@ -120,6 +131,39 @@ public class WinDipInsert extends JFrame {
 		contentPane.add(datePanel);
 		
 		JButton btn_conferma = new JButton("Assumi");
+		btn_conferma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Dipendente dipendente = new Dipendente();
+				dipendente.setNome(txt_nome.getText());
+				dipendente.setCognome(txt_cognome.getText());
+				dipendente.setVia(txt_via.getText());
+				dipendente.setCivico(txt_civico.getText());
+				dipendente.setEmail(txt_email.getText());
+				dipendente.setCellulare(txt_cellulare.getText());
+				if(((String)cb_ruolo.getSelectedItem()).equals("direttore di sala")) {
+					dipendente.setRuolo("direttoreSala");
+				}else {
+					dipendente.setRuolo((String)cb_ruolo.getSelectedItem());
+				}
+				try {
+					Date data = (Date) datePanel.getModel().getValue();
+					if(data.after(new Date())){
+						JOptionPane.showMessageDialog(contentPane,
+							    "Inserisci una data precedente a quella di oggi",
+							    "Errore di input",
+							    JOptionPane.ERROR_MESSAGE);
+					}else {
+						dipendente.setDataN(((data.getYear()+1900))+"-"+(data.getMonth()+1)+"-"+data.getDate());
+						controllerManager.assumi(dipendente);
+					}
+					
+				} catch (NullPointerException e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(contentPane, "Inserisci una data di nascita", "Errore di input",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		btn_conferma.setBounds(308, 417, 196, 23);
 		contentPane.add(btn_conferma);
 	}

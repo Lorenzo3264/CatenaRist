@@ -53,7 +53,7 @@ public class ControllerManager extends PadreController {
 			managerDAO.updateManager(managerEdit, manager.getCodM());
 			JOptionPane.showMessageDialog(winInfoUpdate, "Modifica effettuata con successo", "Messaggio",
 					JOptionPane.INFORMATION_MESSAGE);
-			winInfoUpdate.hide();
+			winInfoUpdate.setVisible(false);
 			winManager.setVisible(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -85,7 +85,7 @@ public class ControllerManager extends PadreController {
 
 	public void info() {
 		winInfoUpdate = new WinInfoUpdate(this, false);
-		winManager.hide();
+		winManager.setVisible(false);
 		winInfoUpdate.setVisible(true);
 	}
 
@@ -112,11 +112,11 @@ public class ControllerManager extends PadreController {
 	}
 
 	public void visualizzaDipendenti() {
-		winManager.setVisible(false);
 		dipendenteDAO = new DipendenteDAO();
 		try {
 			dipendenti = dipendenteDAO.fetchDipendete(manager.getCodA());
 			winDipendenti = new WinDipendenti(this,dipendenti);
+			winManager.setVisible(false);
 			winDipendenti.setVisible(true);
 		}catch(SQLException e) {
 			JOptionPane.showMessageDialog(winManager, "C'è stato un errore nel database", "Errore",
@@ -149,6 +149,53 @@ public class ControllerManager extends PadreController {
 		winDipendenti.setVisible(false);
 		winDipInsert = new WinDipInsert(this);
 		winDipInsert.setVisible(true);
+	}
+
+	public void dipInsertExit() {
+		dipendenteDAO = new DipendenteDAO();
+		try {
+			dipendenti = dipendenteDAO.fetchDipendete(manager.getCodA());
+			winDipendenti = new WinDipendenti(this,dipendenti);
+			winDipInsert.setVisible(false);
+			winDipendenti.setVisible(true);
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(winManager, "C'è stato un errore nel database", "Errore",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public void assumi(Dipendente dipendente) {
+		dipendente.setCodA(manager.getCodA());
+		dipendenteDAO = new DipendenteDAO();
+		try {
+			dipendenteDAO.insertDipendente(dipendente);
+			JOptionPane.showMessageDialog(winDipInsert, "Dipendente assunto con successo", "Messaggio",
+					JOptionPane.INFORMATION_MESSAGE);
+			dipendenti = dipendenteDAO.fetchDipendete(manager.getCodA());
+			winDipendenti = new WinDipendenti(this,dipendenti);
+			winDipInsert.setVisible(false);
+			winDipendenti.setVisible(true);
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(winManager, "C'è stato un errore nel database: "+e.getLocalizedMessage(), "Errore",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public void modifica(Dipendente dipendente) {
+		dipendente.setCodA(manager.getCodA());
+		dipendenteDAO = new DipendenteDAO();
+		try {
+			dipendenteDAO.updateDipendente(dipendente);
+			JOptionPane.showMessageDialog(winDipInsert, "Dipendente modificato con successo", "Messaggio",
+					JOptionPane.INFORMATION_MESSAGE);
+			dipendenti = dipendenteDAO.fetchDipendete(manager.getCodA());
+			winDipendenti = new WinDipendenti(this,dipendenti);
+			winDipUpdate.setVisible(false);
+			winDipendenti.setVisible(true);
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(winManager, "C'è stato un errore nel database: "+e.getLocalizedMessage(), "Errore",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
     

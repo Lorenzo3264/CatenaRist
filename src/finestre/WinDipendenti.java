@@ -78,12 +78,12 @@ public class WinDipendenti extends JFrame {
 				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
 				String dettagliDip = new String("");
-				dettagliDip = dettagliDip + "Nome:" + dipendenti.get(modelRow).getNome() + "\n";
-				dettagliDip = dettagliDip + "Cognome:" + dipendenti.get(modelRow).getCognome() + "\n";
-				dettagliDip = dettagliDip + "Ruolo:" + dipendenti.get(modelRow).getRuolo() + "\n";
-				dettagliDip = dettagliDip + "Cellulare:" + dipendenti.get(modelRow).getCellulare() + "\n";
-				dettagliDip = dettagliDip + "Email:" + dipendenti.get(modelRow).getEmail() + "\n";
-				dettagliDip = dettagliDip + "Indirizzo:" + dipendenti.get(modelRow).getVia() + " "
+				dettagliDip = dettagliDip + "Nome: " + dipendenti.get(modelRow).getNome() + "\n";
+				dettagliDip = dettagliDip + "Cognome: " + dipendenti.get(modelRow).getCognome() + "\n";
+				dettagliDip = dettagliDip + "Ruolo: " + dipendenti.get(modelRow).getRuolo() + "\n";
+				dettagliDip = dettagliDip + "Cellulare: " + dipendenti.get(modelRow).getCellulare() + "\n";
+				dettagliDip = dettagliDip + "Email: " + dipendenti.get(modelRow).getEmail() + "\n";
+				dettagliDip = dettagliDip + "Indirizzo: " + dipendenti.get(modelRow).getVia() + " "
 						+ dipendenti.get(modelRow).getCivico() + "\n";
 				dettagliDip = dettagliDip + "Data di nascita:" + dipendenti.get(modelRow).getDataN() + "\n";
 				JOptionPane.showMessageDialog(contentPane, dettagliDip, "Dettagli dipendente",
