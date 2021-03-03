@@ -94,8 +94,8 @@ public class WinConsegne extends JFrame {
 				if (Integer.compare(opzione, JOptionPane.YES_OPTION) == 0) {
 					JTable table = (JTable) e.getSource();
 					int modelRow = Integer.valueOf(e.getActionCommand());
-					String codC;
-					codC = ((String) ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 0));
+					int codC;
+					codC = ((int) ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 0));
 					((DefaultTableModel) table.getModel()).removeRow(modelRow);
 					controllerRider.completaConsegna(codC);
 					tbl_consegne.revalidate();

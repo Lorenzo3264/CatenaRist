@@ -112,7 +112,7 @@ public class WinSignin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Cliente cliente = new Cliente();
-					cliente.setCodCl("nextval('seq_codcl')");
+					//non è necessario settare un codCl per un nuovo cliente
 					cliente.setNome(txt_nome.getText());
 					cliente.setCognome(txt_cognome.getText());
 					cliente.setEmail(txt_email.getText());
