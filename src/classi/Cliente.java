@@ -23,7 +23,10 @@ public class Cliente extends Utente {
 	
 	public Cliente() {}
 	
+<<<<<<< HEAD
+=======
 	
+>>>>>>> branch 'master' of https://github.com/Lorenzo3264/CatenaRist.git
 	//METODI
 	public int getCodCl() {
 		return codCl;
