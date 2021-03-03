@@ -124,13 +124,6 @@ public class ControllerCliente extends PadreController {
 		controller.logout();
 	}
 
-	public void cambiaInfo(Cliente cl) {
-		// effettuare update cliente tramite DAO
-		winInfoUpdate.hide();
-		cliente = cl;
-		winCliente.show();
-	}
-
 	public void aggiungi(Acquisto acq) { // acq ha solo codP
 		int i = 0;
 		boolean presente = false;
