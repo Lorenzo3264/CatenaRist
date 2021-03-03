@@ -114,7 +114,7 @@ public class WinConferma extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Consegna consegna = new Consegna();
 				try {
-					consegna.setCodC("nextval('seq_codc')");
+					//non è necessario settare il codC di una nuova consegna
 					consegna.setCodA(attivita.get(cb_attivita.getSelectedIndex()).getCodA());
 					consegna.setCivico(txt_civico.getText());
 					consegna.setVia(txt_via.getText());

@@ -87,7 +87,7 @@ public class ControllerCliente extends PadreController {
 		try {
 			consegna = new Consegna();
 			consegna = cons;
-			consegna.setCodCl(Integer.parseInt(cliente.getCodCl()));
+			consegna.setCodCl(cliente.getCodCl());
 			consegnaDAO = new ConsegnaDAO();
 			consegnaDAO.insertConsegna(consegna);
 			int codC = consegnaDAO.fetchCurrentCodC();

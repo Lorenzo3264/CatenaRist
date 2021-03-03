@@ -16,7 +16,7 @@ public class ClienteDAO {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM cliente WHERE email = '"+email+"'");
 			rs.next();
-			cliente.setCodCl(rs.getString("codcl"));
+			cliente.setCodCl(rs.getInt("codcl"));
 			cliente.setNome(rs.getString("nome"));
 			cliente.setCognome(rs.getString("cognome"));
 			cliente.setDataN(rs.getString("datan"));
@@ -38,7 +38,7 @@ public class ClienteDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
-			st.execute("INSERT INTO cliente VALUES ("+cliente.getCodCl()+",'"+cliente.getEmail()+"','"+cliente.getPassword()+"','"+cliente.getNome()+"','"+cliente.getCognome()+"','"+cliente.getCellulare()+"','"+cliente.getDataN()+"');");
+			st.execute("INSERT INTO cliente VALUES (nextval(nextval('seq_codcl'),'"+cliente.getEmail()+"','"+cliente.getPassword()+"','"+cliente.getNome()+"','"+cliente.getCognome()+"','"+cliente.getCellulare()+"','"+cliente.getDataN()+"');");
 			con.close();
 			st.close();
 		}catch(SQLException e) {
@@ -47,7 +47,7 @@ public class ClienteDAO {
 		}
 	}
 
-	public void updateCliente(Cliente clienteEdit, String codCl) throws SQLException {
+	public void updateCliente(Cliente clienteEdit, int codCl) throws SQLException {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();

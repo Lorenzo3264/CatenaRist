@@ -3,7 +3,7 @@ package classi;
 public class Cliente extends Utente {
 
 	//ATTRIBUTI
-	private String codCl; //da int a String per permettere di usare "nextval("seq_codcl")" nell'inserimento a database
+	private int codCl;
 	private String nome;
 	private String cognome;
 	private String dataN;
@@ -23,11 +23,15 @@ public class Cliente extends Utente {
 	
 	public Cliente() {}
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'master' of https://github.com/Lorenzo3264/CatenaRist.git
 	//METODI
-	public String getCodCl() {
+	public int getCodCl() {
 		return codCl;
 	}
-	public void setCodCl(String a) {
+	public void setCodCl(int a) {
 		this.codCl = a;
 	}
 	public String getNome() {

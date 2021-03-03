@@ -18,7 +18,7 @@ public class ConsegnaDAO {
 			Statement st = con.createStatement();
 			if(consegna.getMetodoP().equals("cartaC")) {
 				if(consegna.getNote().isBlank()) {
-					st.execute("INSERT INTO consegna VALUES("+consegna.getCodC()+","+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"','"+consegna.getCodCarta()+"',NULL,'"+consegna.getVia()+"','"+consegna.getCivico()+"')");
+					st.execute("INSERT INTO consegna VALUES(nextval('seq_codc'),"+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"','"+consegna.getCodCarta()+"',NULL,'"+consegna.getVia()+"','"+consegna.getCivico()+"')");
 				}else {
 					st.execute("INSERT INTO consegna VALUES("+consegna.getCodC()+","+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"','"+consegna.getCodCarta()+"','"+consegna.getNote()+"','"+consegna.getVia()+"','"+consegna.getCivico()+"')");	
 				}
@@ -64,7 +64,7 @@ public class ConsegnaDAO {
 			ResultSet rs = statement.executeQuery("SELECT * FROM consegna WHERE codr = "+rider.getCodR()+" AND datac is null;");
 			while(rs.next()) {
 				Consegna c = new Consegna();
-				c.setCodC(rs.getString("codc"));
+				c.setCodC(rs.getInt("codc"));
 				c.setCodA(rs.getInt("coda"));
 				c.setCodCl(rs.getInt("codcl"));
 				c.setCodR(rs.getInt("codr"));
@@ -95,7 +95,7 @@ public class ConsegnaDAO {
 			ResultSet rs = statement.executeQuery("select * from consegna where codr is null and datac is null and coda in ( SELECT coda from attivita natural join collaborazione where codr="+rider.getCodR()+");");
 			while(rs.next()) {
 				Consegna c = new Consegna();
-				c.setCodC(rs.getString("codc"));
+				c.setCodC(rs.getInt("codc"));
 				c.setCodA(rs.getInt("coda"));
 				c.setCodCl(rs.getInt("codcl"));
 				c.setCodR(rs.getInt("codr"));
@@ -118,7 +118,7 @@ public class ConsegnaDAO {
 		return consegne;
 	}
 
-	public void completaConsegna(String codC) throws SQLException {
+	public void completaConsegna(int codC) throws SQLException {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
@@ -131,7 +131,7 @@ public class ConsegnaDAO {
 		}
 	}
 
-	public void prendiOrdine(String codC, int codR) throws SQLException {
+	public void prendiOrdine(int codC, int codR) throws SQLException {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
@@ -152,7 +152,7 @@ public class ConsegnaDAO {
 			ResultSet rs = statement.executeQuery("SELECT * FROM consegna WHERE coda = "+codA+";");
 			while(rs.next()) {
 				Consegna c = new Consegna();
-				c.setCodC(rs.getString("codc"));
+				c.setCodC(rs.getInt("codc"));
 				c.setCodA(rs.getInt("coda"));
 				c.setCodCl(rs.getInt("codcl"));
 				c.setCodR(rs.getInt("codr"));

@@ -107,7 +107,7 @@ public class ControllerRider extends PadreController {
 		}
 	}
 
-	public void completaConsegna(String codC) {
+	public void completaConsegna(int codC) {
 		consegnaDAO = new ConsegnaDAO();
 		try {
 			consegnaDAO.completaConsegna(codC);
@@ -122,7 +122,7 @@ public class ControllerRider extends PadreController {
 		winRider.show();
 	}
 
-	public void prendiOrdine(String codC) {
+	public void prendiOrdine(int codC) {
 		consegnaDAO = new ConsegnaDAO();
 		try {
 			consegnaDAO.prendiOrdine(codC, rider.getCodR());

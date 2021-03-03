@@ -3,7 +3,7 @@ package classi;
 public class Consegna {
 
 	//ATTRIBUTI
-	private String codC;
+	private int codC;
 	private int codA;
 	private int codR;
 	private int codCl;
@@ -17,10 +17,10 @@ public class Consegna {
 	private String civico;
 	
 	//METODI
-	public String getCodC() {
+	public int getCodC() {
 		return codC;
 	}
-	public void setCodC(String codC) {
+	public void setCodC(int codC) {
 		this.codC = codC;
 	}
 	public int getCodA() {
