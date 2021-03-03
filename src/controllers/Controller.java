@@ -27,7 +27,6 @@ public class Controller {
 
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		try {
 			Class.forName("org.postgresql.Driver");
 		}catch(ClassNotFoundException e) {
