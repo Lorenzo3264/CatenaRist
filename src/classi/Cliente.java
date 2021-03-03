@@ -23,11 +23,6 @@ public class Cliente extends Utente {
 	
 	public Cliente() {}
 	
-	@Override
-	public String toString() {
-		return "Cliente [codCl=" + codCl + ", nome=" + nome + ", cognome=" + cognome + ", dataN=" + dataN + ", email="
-				+ email + ", password=" + password + ", cellulare=" + cellulare + "]";
-	}
 	//METODI
 	public String getCodCl() {
 		return codCl;

@@ -18,13 +18,6 @@ public class Controller {
 	private ClienteDAO clienteDAO; //necessario per il signin
 	private WinLogin winLogin;
 	private WinSignin winSignin;
-	
-	
-	
-	public Account getAccount() {
-		return account;
-	}
-
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -111,5 +104,9 @@ public class Controller {
 		winLogin.dispose();
 		winLogin = new WinLogin(this);
 		winLogin.show();
+	}
+	
+	public Account getAccount() {
+		return account;
 	}
 }
