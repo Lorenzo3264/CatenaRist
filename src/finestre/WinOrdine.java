@@ -44,11 +44,6 @@ public class WinOrdine extends JFrame {
 	private JTextField txt_prezzomin;
 	private JTextField txt_prezzomax;
 
-	/**
-	 * Create the frame.
-	 * 
-	 * @param controller
-	 */
 	public WinOrdine(ControllerCliente con, ArrayList<Prodotto> prodotti) {
 		setResizable(false);
 		controller = con;
@@ -74,7 +69,6 @@ public class WinOrdine extends JFrame {
 		int i = 0;
 		righe = new Object[prodotti.size()][8];
 
-		// controllare da qui la prossima volta
 		for (i = 0; i < prodotti.size(); i++) {
 
 			righe[i][0] = prodotti.get(i).getCodP();
@@ -89,9 +83,7 @@ public class WinOrdine extends JFrame {
 		}
 
 		DefaultTableModel modello = new DefaultTableModel(righe, colonne) {
-			/**
-			 * 
-			 */
+
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -150,7 +142,7 @@ public class WinOrdine extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "Inserisci prodotti nel carrello", "Errore nell'ordine",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					controller.confermaO(); // devo passare lista acquisti
+					controller.confermaO();
 				}
 			}
 		});

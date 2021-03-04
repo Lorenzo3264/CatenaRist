@@ -36,11 +36,6 @@ public class WinSignin extends JFrame {
 	private JPasswordField psw_password;
 	private JTextField txt_cellulare;
 	
-	
-
-	/**
-	 * Create the frame.
-	 */
 	public WinSignin(Controller contr) {
 		setTitle("Registrati");
 		setResizable(false);
@@ -134,7 +129,6 @@ public class WinSignin extends JFrame {
 						controller.signin_ok(cliente);
 					}
 				} catch (NullPointerException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(contentPane,
 						    "Inserisci una data di nascita",

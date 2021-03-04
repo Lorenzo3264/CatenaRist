@@ -33,12 +33,6 @@ public class WinDipUpdate extends JFrame {
 	private JTextField txt_civico;
 	private ControllerManager controllerManager;
 	
-
-	/**
-	 * Create the frame.
-	 * @param dipendente 
-	 * @param controller
-	 */
 	public WinDipUpdate(ControllerManager controller, Dipendente dipendente) {
 		controllerManager = controller;
 		setTitle("Assumi dipendente");
@@ -111,7 +105,7 @@ public class WinDipUpdate extends JFrame {
 		contentPane.add(lbl_civico);
 		
 		String[] ruoli = {"chef", "cuoco", "lavapiatti","cameriere","direttore di sala"}; //direttore di sala = direttoreSala
-		JComboBox cb_ruolo = new JComboBox(ruoli);
+		JComboBox<String> cb_ruolo = new JComboBox<String>(ruoli);
 		if(dipendente.getRuolo().equals("direttoreSala")) {
 			cb_ruolo.setSelectedItem("direttore di sala");
 		}else {

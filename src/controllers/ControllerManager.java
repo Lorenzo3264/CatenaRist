@@ -15,8 +15,6 @@ public class ControllerManager extends PadreController {
 	private Controller controller;
 	private ArrayList<Consegna> consegne;
 	private ConsegnaDAO consegnaDAO;
-	private Attivita attivita;
-	private AttivitaDAO attivitaDAO;
 	private ArrayList<Acquisto> acquisti;
 	private AcquistoDAO acquistoDAO;
 	private ArrayList<Prodotto> prodotti;

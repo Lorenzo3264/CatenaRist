@@ -32,14 +32,6 @@ public class WinIncarichi extends JFrame {
 	private ControllerManager controller;
 	private JTable tbl_ordini;
 
-	/**
-	 * Create the frame.
-	 * 
-	 * @param controllerManager
-	 * @param consegne
-	 * @param prodotti
-	 * @param acquisti
-	 */
 	public WinIncarichi(ControllerManager controllerManager, ArrayList<Consegna> consegne, ArrayList<Prodotto> prodotti,
 			ArrayList<Acquisto> acquisti) {
 		setTitle("Incarichi");
@@ -86,9 +78,6 @@ public class WinIncarichi extends JFrame {
 		}
 
 		DefaultTableModel modello = new DefaultTableModel(righe, colonne) {
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
 
 			@Override

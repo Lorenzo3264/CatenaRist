@@ -14,12 +14,7 @@ public class WinCliente extends JFrame {
 
 	private JPanel contentPane;
 	private ControllerCliente controller;
-	
 
-
-	/**
-	 * Create the frame.
-	 */
 	public WinCliente(ControllerCliente contr) {
 		controller = contr;
 		setTitle("Men\u00F9 Cliente");

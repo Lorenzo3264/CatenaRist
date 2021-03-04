@@ -38,11 +38,6 @@ public class WinConferma extends JFrame {
 	private JTextField txt_codcarta;
 	private JLabel lbl_prezzotot;
 
-	/**
-	 * Create the frame.
-	 * 
-	 * @param controllerCliente
-	 */
 	public WinConferma(ControllerCliente controllerCliente) {
 		setResizable(false);
 		controller = controllerCliente;
@@ -59,7 +54,6 @@ public class WinConferma extends JFrame {
 		contentPane.add(txt_note);
 		
 		float prezzoTot = controller.getPrezzoTot();
-		// prova per le attività
 
 		String[] att = new String[attivita.size()];
 		int i;
@@ -129,7 +123,7 @@ public class WinConferma extends JFrame {
 						if(txt_codcarta.getText().length()  != 16) {
 							txt_codcarta.setText("");
 						}else {
-							// necessario per fare in modo che ci siano solo numeri
+							// controllo necessario per fare in modo che ci siano solo numeri
 							String.valueOf(Long.parseLong(txt_codcarta.getText()));
 							consegna.setCodCarta(txt_codcarta.getText());
 						}
@@ -207,7 +201,6 @@ public class WinConferma extends JFrame {
 	}
 
 	public void aggiornaprezzo() {
-		// TODO Auto-generated method stub
 		float prezzoTot = controller.getPrezzoTot();
 		contentPane.remove(lbl_prezzotot);
 		lbl_prezzotot = new JLabel("Prezzo totale: €" + prezzoTot);

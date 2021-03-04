@@ -19,10 +19,6 @@ public class WinManager extends JFrame {
 	private JPanel contentPane;
 	private ControllerManager controller;
 
-	/**
-	 * Create the frame.
-	 * @param controllerManager 
-	 */
 	public WinManager(ControllerManager controllerManager) {
 		controller = controllerManager;
 		setTitle("Men\u00F9 Manager");

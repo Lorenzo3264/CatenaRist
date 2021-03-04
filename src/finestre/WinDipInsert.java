@@ -33,12 +33,6 @@ public class WinDipInsert extends JFrame {
 	private JTextField txt_civico;
 	private ControllerManager controllerManager;
 
-	
-
-	/**
-	 * Create the frame.
-	 * @param controller 
-	 */
 	public WinDipInsert(ControllerManager controller) {
 		controllerManager = controller;
 		setTitle("Assumi dipendente");

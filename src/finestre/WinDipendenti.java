@@ -29,12 +29,6 @@ public class WinDipendenti extends JFrame {
 	private JTable tbl_dipendenti;
 	private ControllerManager controllerManager;
 
-	/**
-	 * Create the frame.
-	 * 
-	 * @param dipendenti
-	 * @param controller
-	 */
 	public WinDipendenti(ControllerManager controller, ArrayList<Dipendente> dipendenti) {
 		controllerManager = controller;
 		setTitle("Dipendenti");

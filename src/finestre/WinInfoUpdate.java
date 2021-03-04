@@ -34,11 +34,6 @@ public class WinInfoUpdate extends JFrame {
 	private JTextField txt_cellulare;
 	private PadreController controller;
 
-	
-	/**
-	 * Create the frame.
-	 * @param controllerCliente 
-	 */
 	public WinInfoUpdate(PadreController con, boolean hasMezzi) {
 		
 		controller = con;

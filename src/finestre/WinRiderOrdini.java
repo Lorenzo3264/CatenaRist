@@ -29,12 +29,6 @@ public class WinRiderOrdini extends JFrame {
 	private JTable tbl_consegne;
 	private ControllerRider controllerRider;
 
-	/**
-	 * Create the frame.
-	 * 
-	 * @param controller
-	 * @param consegne
-	 */
 	public WinRiderOrdini(ControllerRider controller, ArrayList<Consegna> consegne) {
 		controllerRider = controller;
 		setTitle("Scegli l'incarico");
@@ -73,9 +67,7 @@ public class WinRiderOrdini extends JFrame {
 		}
 
 		DefaultTableModel modello = new DefaultTableModel(righe, colonne) {
-			/**
-			 * 
-			 */
+
 			private static final long serialVersionUID = 1L;
 
 			@Override

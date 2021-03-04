@@ -27,9 +27,6 @@ public class WinLogin extends JFrame {
 	private JLabel lbl_password;
 	private JLabel lbl_signin;
 
-	/**
-	 * Create the frame.
-	 */
 	public WinLogin(Controller contr) {
 		controller = contr;
 		setResizable(false);

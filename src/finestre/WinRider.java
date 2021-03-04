@@ -19,11 +19,6 @@ public class WinRider extends JFrame {
 	private JPanel contentPane;
 	private ControllerRider controller;
 
-	
-
-	/**
-	 * Create the frame.
-	 */
 	public WinRider(ControllerRider contr) {
 		controller=contr;
 		setTitle("Men\u00F9 Rider");
