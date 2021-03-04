@@ -1,6 +1,6 @@
 package finestre;
-import controllers.*;
 
+import controllers.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,14 +23,14 @@ public class WinCliente extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		JButton btn_cambiainfo = new JButton("Cambia informazioni account");
 		btn_cambiainfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.info();
 			}
 		});
-		
+
 		JButton btn_ordina = new JButton("Ordina");
 		btn_ordina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -40,7 +40,7 @@ public class WinCliente extends JFrame {
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		contentPane.add(btn_ordina);
 		contentPane.add(btn_cambiainfo);
-		
+
 		JButton btn_logout = new JButton("Esci");
 		btn_logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

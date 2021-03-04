@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import classi.Account;
 
-import org.postgresql.*;
 
 
 

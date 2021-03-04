@@ -2,7 +2,6 @@ package controllers;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -44,7 +43,7 @@ public class ControllerCliente extends PadreController {
 		}
 
 		winCliente = new WinCliente(this);
-		winCliente.show();
+		winCliente.setVisible(true);
 	}
 
 	public void ordina() {
@@ -56,8 +55,8 @@ public class ControllerCliente extends PadreController {
 			prodotti = prodottoDAO.fetchProdotto();
 			winOrdine = new WinOrdine(this, prodotti);
 			attivita = attivitaDAO.fetchAttivita();
-			winCliente.hide();
-			winOrdine.show();
+			winCliente.setVisible(false);
+			winOrdine.setVisible(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -66,21 +65,21 @@ public class ControllerCliente extends PadreController {
 
 	public void indietroO() {
 		winOrdine.dispose();
-		winCliente.show();
+		winCliente.setVisible(true);
 	}
 
 	public void confermaO() {
 
-		winOrdine.hide();
+		winOrdine.setVisible(false);
 		winConferma = new WinConferma(this);
 		winConferma.aggiornaprezzo();
-		winConferma.show();
+		winConferma.setVisible(true);
 
 	}
 
 	public void indietroC() {
-		winConferma.hide();
-		winOrdine.show();
+		winConferma.setVisible(false);
+		winOrdine.setVisible(true);
 	}
 
 	public void confermaC(Consegna cons) {
@@ -95,7 +94,7 @@ public class ControllerCliente extends PadreController {
 			acquistoDAO.insertAcquisto(acquisto, codC);
 			winConferma.dispose();
 			winOrdine.dispose();
-			winCliente.show();
+			winCliente.setVisible(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,8 +105,8 @@ public class ControllerCliente extends PadreController {
 
 	public void info() {
 		winInfoUpdate = new WinInfoUpdate(this,false);
-		winCliente.hide();
-		winInfoUpdate.show();
+		winCliente.setVisible(false);
+		winInfoUpdate.setVisible(true);
 	}
 
 	public void logout() {
@@ -122,13 +121,6 @@ public class ControllerCliente extends PadreController {
 			winConferma.dispose();
 		}
 		controller.logout();
-	}
-
-	public void cambiaInfo(Cliente cl) {
-		// effettuare update cliente tramite DAO
-		winInfoUpdate.hide();
-		cliente = cl;
-		winCliente.show();
 	}
 
 	public void aggiungi(Acquisto acq) { // acq ha solo codP
@@ -170,17 +162,14 @@ public class ControllerCliente extends PadreController {
 	}
 
 	public boolean isSpesaVuota() {
-		// TODO Auto-generated method stub
 		return acquisto.isEmpty();
 	}
 
 	public ArrayList<Attivita> getAttivita() {
-		// TODO Auto-generated method stub
 		return attivita;
 	}
 
 	public float getPrezzoTot() {
-		// TODO Auto-generated method stub
 		float prezzoTot = 0;
 		boolean trovato;
 		int j;
@@ -200,8 +189,8 @@ public class ControllerCliente extends PadreController {
 	
 	@Override
 	public void infoBack() {
-		winInfoUpdate.hide();
-		winCliente.show();
+		winInfoUpdate.setVisible(false);
+		winCliente.setVisible(true);
 	}
 	
 	@Override
@@ -212,10 +201,9 @@ public class ControllerCliente extends PadreController {
 			clienteDAO.updateCliente(clienteEdit, cliente.getCodCl());
 			JOptionPane.showMessageDialog(winInfoUpdate, "Modifica effettuata con successo", "Messaggio",
 					JOptionPane.INFORMATION_MESSAGE);
-			winInfoUpdate.hide();
-			winCliente.show();
+			winInfoUpdate.setVisible(false);
+			winCliente.setVisible(true);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(winInfoUpdate, "Ci sono errori nei valori inseriti", "Errore di input",
 					JOptionPane.ERROR_MESSAGE);

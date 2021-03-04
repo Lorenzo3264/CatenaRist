@@ -54,7 +54,6 @@ public class ControllerManager extends PadreController {
 			winInfoUpdate.setVisible(false);
 			winManager.setVisible(true);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(winInfoUpdate, "Ci sono errori nei valori inseriti", "Errore di input",
 					JOptionPane.ERROR_MESSAGE);

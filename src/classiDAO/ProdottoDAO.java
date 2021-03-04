@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import classi.*;
 
@@ -33,9 +32,8 @@ public class ProdottoDAO {
 			st.close();
 			con.close();
 		} catch (SQLException e) {
-			System.out.println("errore nella connessione: \n" + e);
+			e.printStackTrace();
 			throw new SQLException(e);
-
 		}
 		return prodotti;
 	}
