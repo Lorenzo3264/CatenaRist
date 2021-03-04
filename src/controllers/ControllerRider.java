@@ -16,9 +16,15 @@ public class ControllerRider extends PadreController {
 	private WinInfoUpdate winInfoUpdate;
 	private Rider rider;
 	private RiderDAO riderDAO;
+	
+	//mantenuti per conservare il riferimento con il database
+	@SuppressWarnings("unused")
 	private ArrayList<Collaborazione> collaborazioni;
+	@SuppressWarnings("unused")
 	private CollaborazioneDAO collaborazioneDAO;
+	@SuppressWarnings("unused")
 	private ArrayList<Attivita> attivita;
+	
 	private AttivitaDAO attivitaDAO;
 	private ArrayList<Consegna> consegne;
 	private ConsegnaDAO consegnaDAO;
@@ -36,16 +42,16 @@ public class ControllerRider extends PadreController {
     	}catch (SQLException e) {
     		e.printStackTrace();
     	};
-    	winRider.show();
+    	winRider.setVisible(true);
     };
 	
 	public void consegna() {
 		try {
 			consegnaDAO = new ConsegnaDAO();
 			consegne = consegnaDAO.fetchConsegna(rider);
-			winRider.hide();
+			winRider.setVisible(false);
 			winConsegne = new WinConsegne(this, consegne);
-			winConsegne.show();
+			winConsegne.setVisible(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -55,18 +61,18 @@ public class ControllerRider extends PadreController {
 		try {
 			consegnaDAO = new ConsegnaDAO();
 			consegne = consegnaDAO.fetchOrdini(rider);
-			winRider.hide();
+			winRider.setVisible(false);
 			winRiderOrdini = new WinRiderOrdini(this, consegne);
-			winRiderOrdini.show();
+			winRiderOrdini.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void info() {
-		winRider.hide();
+		winRider.setVisible(false);
 		winInfoUpdate = new WinInfoUpdate(this,true);
-		winInfoUpdate.show();
+		winInfoUpdate.setVisible(true);
 	}
 
 	public void logout() {
@@ -85,8 +91,8 @@ public class ControllerRider extends PadreController {
 	
 	@Override
 	public void infoBack() {
-		winInfoUpdate.hide();
-		winRider.show();
+		winInfoUpdate.setVisible(false);
+		winRider.setVisible(true);
 	}
 	
 	@Override
@@ -97,10 +103,9 @@ public class ControllerRider extends PadreController {
 			riderDAO.updateRider(riderEdit, rider.getCodR());
 			JOptionPane.showMessageDialog(winInfoUpdate, "Modifica effettuata con successo", "Messaggio",
 					JOptionPane.INFORMATION_MESSAGE);
-			winInfoUpdate.hide();
-			winRider.show();
+			winInfoUpdate.setVisible(false);
+			winRider.setVisible(true);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(winInfoUpdate, "Ci sono errori nei valori inseriti", "Errore di input",
 					JOptionPane.ERROR_MESSAGE);
@@ -118,8 +123,8 @@ public class ControllerRider extends PadreController {
 	}
 
 	public void consegnaBack() {
-		winConsegne.hide();
-		winRider.show();
+		winConsegne.setVisible(false);
+		winRider.setVisible(true);
 	}
 
 	public void prendiOrdine(int codC) {
@@ -133,8 +138,8 @@ public class ControllerRider extends PadreController {
 	}
 
 	public void ordineBack() {
-		winRiderOrdini.hide();
-		winRider.show();
+		winRiderOrdini.setVisible(false);
+		winRider.setVisible(true);
 	}
 	
 	

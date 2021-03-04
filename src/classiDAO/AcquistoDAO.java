@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import classi.Acquisto;
-import classi.Prodotto;
 
 public class AcquistoDAO {
 
@@ -30,10 +28,10 @@ public class AcquistoDAO {
 			st.close();
 			con.close();
 		} catch (SQLException e) {
-			System.out.println("errore nella connessione: \n" + e);
+			e.printStackTrace();
 			throw new SQLException(e);
 		}
-		return acquisti;// da cambiare
+		return acquisti;
 	}
 	
 	public void insertAcquisto(ArrayList<Acquisto> acquisto, int codC) throws SQLException {
@@ -53,7 +51,6 @@ public class AcquistoDAO {
 			statement.close();
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new SQLException(e);
 		}

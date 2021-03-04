@@ -10,9 +10,6 @@ import classiDAO.*;
 
 public class Controller {
 
-	private ControllerCliente controllerCliente;
-	private ControllerRider controllerRider;
-	private ControllerManager controllerManager;
 	private Account account;
 	private AccountDAO accountDAO;
 	private ClienteDAO clienteDAO; //necessario per il signin
@@ -22,17 +19,16 @@ public class Controller {
 	public static void main(String[] args) {
 		try {
 			Class.forName("org.postgresql.Driver");
+			new Controller();
 		}catch(ClassNotFoundException e) {
-			
+			e.printStackTrace();
 		}
-		
-		Controller controller = new Controller();
 	}
 	
 	public Controller() {
 		//corpo procedurale del progetto con altri controller e finestre
 		winLogin = new WinLogin(this);
-		winLogin.show();
+		winLogin.setVisible(true);;
 	}
 	
 	public void login(String email, String password) {
@@ -42,16 +38,16 @@ public class Controller {
 			accountDAO = new AccountDAO();
 			account = accountDAO.fetchAccount(email, password);
 			if(account.getPermessi().equals("codCl")) {
-				winLogin.hide();
-				controllerCliente = new ControllerCliente(this);
+				winLogin.setVisible(false);
+				new ControllerCliente(this);
 			} 
 			else if (account.getPermessi().equals("codR")) {
-				winLogin.hide();
-				controllerRider = new ControllerRider(this);
+				winLogin.setVisible(false);
+				new ControllerRider(this);
 			}
 			else if (account.getPermessi().equals("codM")) {
-				winLogin.hide();
-				controllerManager = new ControllerManager(this);
+				winLogin.setVisible(false);
+				new ControllerManager(this);
 			}
 			
 		}catch(SQLException e) {
@@ -65,19 +61,17 @@ public class Controller {
 	}
 	
 	public void signin() {
-		winLogin.hide();
+		winLogin.setVisible(false);
 		winSignin = new WinSignin(this);
-		winSignin.show();
+		winSignin.setVisible(true);
 	}
 
 	public void signin_back() {
-		// TODO Auto-generated method stub
-		winSignin.hide();
-		winLogin.show();
+		winSignin.setVisible(false);
+		winLogin.setVisible(true);
 	}
 
 	public void signin_ok(Cliente cl) {
-		// TODO Auto-generated method stub
 		System.out.println(cl.toString());
 		clienteDAO = new ClienteDAO();
 		try {
@@ -86,10 +80,9 @@ public class Controller {
 				    "Registrazione effettuata con successo",
 				    "Messaggio",
 				    JOptionPane.INFORMATION_MESSAGE);
-			winSignin.hide();
-			winLogin.show();
+			winSignin.setVisible(false);
+			winLogin.setVisible(true);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(winSignin,
 				    "Inserisci correttamente i dati",
 				    "Attenzione",
@@ -102,7 +95,7 @@ public class Controller {
 		//supponendo che sono state già chiuse tutte le finestre precedenti
 		winLogin.dispose();
 		winLogin = new WinLogin(this);
-		winLogin.show();
+		winLogin.setVisible(true);
 	}
 	
 	public Account getAccount() {
