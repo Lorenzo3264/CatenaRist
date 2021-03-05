@@ -83,7 +83,7 @@ public class WinRiderOrdini extends JFrame {
 
 		tbl_consegne = new JTable(modello);
 
-		Action completa = new AbstractAction() {
+		Action assumiIncarico = new AbstractAction() {
 			public void actionPerformed(ActionEvent e) {
 				int opzione = JOptionPane.showConfirmDialog(contentPane, "Sei sicuro?", "conferma",
 						JOptionPane.YES_NO_OPTION);
@@ -128,7 +128,7 @@ public class WinRiderOrdini extends JFrame {
 		tbl_consegne.getColumnModel().getColumn(5).setPreferredWidth(300);
 		tbl_consegne.getColumnModel().getColumn(6).setPreferredWidth(300);
 
-		ButtonColumn btn_aggiungi = new ButtonColumn(tbl_consegne, completa, 6);
+		ButtonColumn btn_aggiungi = new ButtonColumn(tbl_consegne, assumiIncarico, 6);
 		ButtonColumn btn_note = new ButtonColumn(tbl_consegne, vediNote, 5);
 		TableColumnModel tcm = tbl_consegne.getColumnModel();
 		tcm.removeColumn(tcm.getColumn(0));
