@@ -101,7 +101,6 @@ public class WinConsegne extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JTable table = (JTable) e.getSource();
 				int modelRow = Integer.valueOf(e.getActionCommand());
 				if(Objects.isNull(consegne.get(modelRow).getNote())) 
 				{

@@ -96,7 +96,6 @@ public class ControllerCliente extends PadreController {
 			winOrdine.dispose();
 			winCliente.setVisible(true);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(winConferma, "Ci sono errori nei valori inseriti\n"+e.getLocalizedMessage(), "Errore di input",
 					JOptionPane.ERROR_MESSAGE);

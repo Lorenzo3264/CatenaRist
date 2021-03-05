@@ -139,7 +139,6 @@ public class WinConferma extends JFrame {
 						controller.confermaC(consegna);
 					}
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(contentPane, "Inserisci solo numeri nel campo 'codice carta'",
 							"Errore di input", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
@@ -162,12 +161,12 @@ public class WinConferma extends JFrame {
 		JLabel lbl_cartac = new JLabel("Inserisci codice carta");
 		lbl_cartac.setBounds(10, 200, 187, 14);
 		contentPane.add(lbl_cartac);
-		lbl_cartac.hide();
+		lbl_cartac.setVisible(false);
 
 		txt_codcarta = new JTextField();
 		txt_codcarta.setBounds(207, 197, 217, 20);
 		contentPane.add(txt_codcarta);
-		txt_codcarta.hide();
+		txt_codcarta.setVisible(false);
 		txt_codcarta.setColumns(10);
 
 		JLabel lbl_attivita = new JLabel("Seleziona filiale");
@@ -181,16 +180,16 @@ public class WinConferma extends JFrame {
 		rb_cartaC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				txt_codcarta.show();
-				lbl_cartac.show();
+				txt_codcarta.setVisible(true);
+				lbl_cartac.setVisible(true);
 			}
 		});
 
 		rb_contanti.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				txt_codcarta.hide();
-				lbl_cartac.hide();
+				txt_codcarta.setVisible(false);
+				lbl_cartac.setVisible(false);
 			}
 		});
 
