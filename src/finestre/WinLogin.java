@@ -26,6 +26,7 @@ public class WinLogin extends JFrame {
 	private JLabel lbl_email;
 	private JLabel lbl_password;
 	private JLabel lbl_signin;
+	private JLabel attenzione;
 
 	public WinLogin(Controller contr) {
 		controller = contr;
@@ -77,5 +78,9 @@ public class WinLogin extends JFrame {
 		lbl_signin = new JLabel("Sei un nuovo cliente?");
 		lbl_signin.setBounds(198, 340, 241, 14);
 		contentPane.add(lbl_signin);
+		
+		attenzione = new JLabel("Non inserire mai apostrofi");
+		attenzione.setBounds(10, 11, 382, 14);
+		contentPane.add(attenzione);
 	}
 }

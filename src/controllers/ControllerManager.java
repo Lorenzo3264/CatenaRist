@@ -37,7 +37,6 @@ public class ControllerManager extends PadreController {
     		manager = managerDAO.fetchManager(controller.getAccount().getEmail());
     		super.setUtente(manager);
     	}catch (SQLException e) {
-    		e.printStackTrace();
     	};
     	winManager = new WinManager(this);
     	winManager.setVisible(true);
@@ -54,7 +53,6 @@ public class ControllerManager extends PadreController {
 			winInfoUpdate.setVisible(false);
 			winManager.setVisible(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(winInfoUpdate, "Ci sono errori nei valori inseriti", "Errore di input",
 					JOptionPane.ERROR_MESSAGE);
 		}

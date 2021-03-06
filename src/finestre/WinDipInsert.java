@@ -38,73 +38,73 @@ public class WinDipInsert extends JFrame {
 		setTitle("Assumi dipendente");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 530, 490);
+		setBounds(100, 100, 530, 509);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		txt_nome = new JTextField();
-		txt_nome.setBounds(122, 11, 382, 20);
+		txt_nome.setBounds(122, 34, 382, 20);
 		contentPane.add(txt_nome);
 		txt_nome.setColumns(10);
 		
 		txt_cognome = new JTextField();
-		txt_cognome.setBounds(122, 42, 382, 20);
+		txt_cognome.setBounds(122, 65, 382, 20);
 		contentPane.add(txt_cognome);
 		txt_cognome.setColumns(10);
 		
 		txt_email = new JTextField();
-		txt_email.setBounds(122, 73, 382, 20);
+		txt_email.setBounds(122, 96, 382, 20);
 		contentPane.add(txt_email);
 		txt_email.setColumns(10);
 		
 		txt_cellulare = new JTextField();
-		txt_cellulare.setBounds(122, 104, 382, 20);
+		txt_cellulare.setBounds(122, 127, 382, 20);
 		contentPane.add(txt_cellulare);
 		txt_cellulare.setColumns(10);
 		
 		txt_via = new JTextField();
-		txt_via.setBounds(122, 135, 382, 20);
+		txt_via.setBounds(122, 158, 382, 20);
 		contentPane.add(txt_via);
 		txt_via.setColumns(10);
 		
 		txt_civico = new JTextField();
-		txt_civico.setBounds(122, 166, 382, 20);
+		txt_civico.setBounds(122, 189, 382, 20);
 		contentPane.add(txt_civico);
 		txt_civico.setColumns(10);
 		
 		JLabel lbl_nome = new JLabel("Nome");
-		lbl_nome.setBounds(10, 14, 102, 14);
+		lbl_nome.setBounds(10, 37, 102, 14);
 		contentPane.add(lbl_nome);
 		
 		JLabel lbl_cognome = new JLabel("Cognome");
-		lbl_cognome.setBounds(10, 45, 102, 14);
+		lbl_cognome.setBounds(10, 68, 102, 14);
 		contentPane.add(lbl_cognome);
 		
 		JLabel lbl_email = new JLabel("Email");
-		lbl_email.setBounds(10, 76, 102, 14);
+		lbl_email.setBounds(10, 99, 102, 14);
 		contentPane.add(lbl_email);
 		
 		JLabel lbl_cellulare = new JLabel("Cellulare");
-		lbl_cellulare.setBounds(10, 107, 102, 14);
+		lbl_cellulare.setBounds(10, 130, 102, 14);
 		contentPane.add(lbl_cellulare);
 		
 		JLabel lbl_via = new JLabel("Via");
-		lbl_via.setBounds(10, 138, 102, 14);
+		lbl_via.setBounds(10, 161, 102, 14);
 		contentPane.add(lbl_via);
 		
 		JLabel lbl_civico = new JLabel("Civico");
-		lbl_civico.setBounds(10, 169, 102, 14);
+		lbl_civico.setBounds(10, 192, 102, 14);
 		contentPane.add(lbl_civico);
 		
 		String[] ruoli = {"chef", "cuoco", "lavapiatti","cameriere","direttore di sala"}; //direttore di sala = direttoreSala
-		JComboBox cb_ruolo = new JComboBox(ruoli);
-		cb_ruolo.setBounds(122, 362, 382, 20);
+		JComboBox<String> cb_ruolo = new JComboBox<String>(ruoli);
+		cb_ruolo.setBounds(122, 385, 382, 20);
 		contentPane.add(cb_ruolo);
 		
 		JLabel lbl_ruolo = new JLabel("Ruolo");
-		lbl_ruolo.setBounds(10, 365, 102, 14);
+		lbl_ruolo.setBounds(10, 388, 102, 14);
 		contentPane.add(lbl_ruolo);
 		
 		JButton btn_indietro = new JButton("indietro");
@@ -113,7 +113,7 @@ public class WinDipInsert extends JFrame {
 				controllerManager.dipInsertExit();
 			}
 		});
-		btn_indietro.setBounds(10, 417, 102, 23);
+		btn_indietro.setBounds(10, 440, 102, 23);
 		contentPane.add(btn_indietro);
 		
 		UtilDateModel model = new UtilDateModel();
@@ -123,7 +123,7 @@ public class WinDipInsert extends JFrame {
 		p.put("text.year", "Anno");
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		datePanel.setSize(494, 154);
-		datePanel.setLocation(10, 197);
+		datePanel.setLocation(10, 220);
 		contentPane.add(datePanel);
 		
 		JButton btn_conferma = new JButton("Assumi");
@@ -160,7 +160,11 @@ public class WinDipInsert extends JFrame {
 				}
 			}
 		});
-		btn_conferma.setBounds(308, 417, 196, 23);
+		btn_conferma.setBounds(308, 440, 196, 23);
 		contentPane.add(btn_conferma);
+		
+		JLabel attenzione = new JLabel("Non inserire mai apostrofi");
+		attenzione.setBounds(122, 9, 382, 14);
+		contentPane.add(attenzione);
 	}
 }

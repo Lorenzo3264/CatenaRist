@@ -87,7 +87,6 @@ public class Controller {
 				    "Inserisci correttamente i dati",
 				    "Attenzione",
 				    JOptionPane.WARNING_MESSAGE);
-			e.printStackTrace();
 		}
 	}
 	

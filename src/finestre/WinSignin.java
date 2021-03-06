@@ -41,7 +41,7 @@ public class WinSignin extends JFrame {
 		setResizable(false);
 		controller = contr;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 582, 491);
+		setBounds(100, 100, 582, 522);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -54,52 +54,52 @@ public class WinSignin extends JFrame {
 		p.put("text.year", "Anno");
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		datePanel.setSize(546, 180);
-		datePanel.setLocation(10, 201);
+		datePanel.setLocation(10, 216);
 		contentPane.add(datePanel);
 		
 		txt_nome = new JTextField();
-		txt_nome.setBounds(135, 21, 421, 20);
+		txt_nome.setBounds(135, 36, 421, 20);
 		contentPane.add(txt_nome);
 		txt_nome.setColumns(10);
 		
 		txt_cognome = new JTextField();
-		txt_cognome.setBounds(135, 52, 421, 20);
+		txt_cognome.setBounds(135, 67, 421, 20);
 		contentPane.add(txt_cognome);
 		txt_cognome.setColumns(10);
 		
 		txt_email = new JTextField();
 		txt_email.setText("");
-		txt_email.setBounds(135, 83, 421, 20);
+		txt_email.setBounds(135, 98, 421, 20);
 		contentPane.add(txt_email);
 		txt_email.setColumns(10);
 		
 		psw_password = new JPasswordField();
-		psw_password.setBounds(135, 114, 421, 20);
+		psw_password.setBounds(135, 129, 421, 20);
 		contentPane.add(psw_password);
 		
 		txt_cellulare = new JTextField();
-		txt_cellulare.setBounds(135, 145, 421, 20);
+		txt_cellulare.setBounds(135, 160, 421, 20);
 		contentPane.add(txt_cellulare);
 		txt_cellulare.setColumns(10);
 		
 		JLabel lbl_nome = new JLabel("Nome");
-		lbl_nome.setBounds(22, 24, 103, 14);
+		lbl_nome.setBounds(22, 39, 103, 14);
 		contentPane.add(lbl_nome);
 		
 		JLabel lbl_cognome = new JLabel("Cognome");
-		lbl_cognome.setBounds(22, 55, 103, 14);
+		lbl_cognome.setBounds(22, 70, 103, 14);
 		contentPane.add(lbl_cognome);
 		
 		JLabel lbl_email = new JLabel("Email");
-		lbl_email.setBounds(22, 86, 103, 14);
+		lbl_email.setBounds(22, 101, 103, 14);
 		contentPane.add(lbl_email);
 		
 		JLabel lbl_password = new JLabel("Password");
-		lbl_password.setBounds(22, 117, 103, 14);
+		lbl_password.setBounds(22, 132, 103, 14);
 		contentPane.add(lbl_password);
 		
 		JLabel lbl_cellulare = new JLabel("Cellulare");
-		lbl_cellulare.setBounds(22, 148, 103, 14);
+		lbl_cellulare.setBounds(22, 163, 103, 14);
 		contentPane.add(lbl_cellulare);
 		
 		JButton btn_conferma = new JButton("Crea Account");
@@ -137,7 +137,7 @@ public class WinSignin extends JFrame {
 				}
 			}
 		});
-		btn_conferma.setBounds(397, 408, 159, 33);
+		btn_conferma.setBounds(397, 439, 159, 33);
 		contentPane.add(btn_conferma);
 		
 		JButton btn_indietro = new JButton("Torna indietro");
@@ -146,12 +146,16 @@ public class WinSignin extends JFrame {
 				controller.signin_back();
 			}
 		});
-		btn_indietro.setBounds(10, 408, 158, 33);
+		btn_indietro.setBounds(10, 439, 158, 33);
 		contentPane.add(btn_indietro);
 		
 		JLabel lbl_dataN = new JLabel("Inserisci la data di nascita");
-		lbl_dataN.setBounds(22, 176, 233, 14);
+		lbl_dataN.setBounds(22, 191, 233, 14);
 		contentPane.add(lbl_dataN);
+		
+		JLabel attenzione = new JLabel("Non inserire mai apostrofi");
+		attenzione.setBounds(135, 11, 382, 14);
+		contentPane.add(attenzione);
 		
 
 	}

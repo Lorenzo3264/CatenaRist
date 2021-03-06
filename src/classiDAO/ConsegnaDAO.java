@@ -20,13 +20,13 @@ public class ConsegnaDAO {
 				if(consegna.getNote().isBlank()) {
 					st.execute("INSERT INTO consegna VALUES(nextval('seq_codc'),"+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"','"+consegna.getCodCarta()+"',NULL,'"+consegna.getVia()+"','"+consegna.getCivico()+"')");
 				}else {
-					st.execute("INSERT INTO consegna VALUES("+consegna.getCodC()+","+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"','"+consegna.getCodCarta()+"','"+consegna.getNote()+"','"+consegna.getVia()+"','"+consegna.getCivico()+"')");	
+					st.execute("INSERT INTO consegna VALUES(nextval('seq_codc'),"+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"','"+consegna.getCodCarta()+"','"+consegna.getNote()+"','"+consegna.getVia()+"','"+consegna.getCivico()+"')");	
 				}
 			}else {
 				if(consegna.getNote().isBlank()) {
-					st.execute("INSERT INTO consegna VALUES("+consegna.getCodC()+","+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"',NULL,NULL,'"+consegna.getVia()+"','"+consegna.getCivico()+"')");
+					st.execute("INSERT INTO consegna VALUES(nextval('seq_codc'),"+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"',NULL,NULL,'"+consegna.getVia()+"','"+consegna.getCivico()+"')");
 				}else {
-					st.execute("INSERT INTO consegna VALUES("+consegna.getCodC()+","+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"',NULL,'"+consegna.getNote()+"','"+consegna.getVia()+"','"+consegna.getCivico()+"')");
+					st.execute("INSERT INTO consegna VALUES(nextval('seq_codc'),"+consegna.getCodCl()+","+consegna.getCodA()+",NULL,"+consegna.getPrezzo()+",NULL,"+consegna.getDataO()+",'"+consegna.getMetodoP()+"',NULL,'"+consegna.getNote()+"','"+consegna.getVia()+"','"+consegna.getCivico()+"')");
 				}
 			}
 			

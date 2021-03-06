@@ -39,7 +39,7 @@ public class ControllerCliente extends PadreController {
 			cliente = clienteDAO.fetchCliente(controller.getAccount().getEmail());
 			super.setUtente(cliente);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 		}
 
 		winCliente = new WinCliente(this);
@@ -58,7 +58,8 @@ public class ControllerCliente extends PadreController {
 			winCliente.setVisible(false);
 			winOrdine.setVisible(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(winCliente, "C'è stato un errore nel database", "Errore",
+					JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -96,7 +97,6 @@ public class ControllerCliente extends PadreController {
 			winOrdine.dispose();
 			winCliente.setVisible(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(winConferma, "Ci sono errori nei valori inseriti\n"+e.getLocalizedMessage(), "Errore di input",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -196,14 +196,16 @@ public class ControllerCliente extends PadreController {
 	public void cambiaInfo(Utente utente) {
 		clienteDAO = new ClienteDAO();
 		Cliente clienteEdit = new Cliente(utente);
+		clienteDAO = new ClienteDAO();
 		try {
 			clienteDAO.updateCliente(clienteEdit, cliente.getCodCl());
+			cliente = clienteDAO.fetchCliente(clienteEdit.getEmail());
+			super.setUtente(cliente);
 			JOptionPane.showMessageDialog(winInfoUpdate, "Modifica effettuata con successo", "Messaggio",
 					JOptionPane.INFORMATION_MESSAGE);
 			winInfoUpdate.setVisible(false);
 			winCliente.setVisible(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(winInfoUpdate, "Ci sono errori nei valori inseriti", "Errore di input",
 					JOptionPane.ERROR_MESSAGE);
 		}

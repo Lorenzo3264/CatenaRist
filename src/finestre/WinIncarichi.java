@@ -102,7 +102,7 @@ public class WinIncarichi extends JFrame {
 				int i;
 				int j;
 				int listaSize = 0;
-				int codC = Integer.parseInt((String) ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 0));
+				int codC = (int) ((DefaultTableModel) table.getModel()).getValueAt(modelRow, 0);
 				ArrayList<String> nomi = new ArrayList<String>();
 				ArrayList<Integer> quantita = new ArrayList<Integer>();
 				ArrayList<Float> prezzi = new ArrayList<Float>();

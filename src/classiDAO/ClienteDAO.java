@@ -38,7 +38,7 @@ public class ClienteDAO {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CatenaRist","postgres","admin");
 			Statement st = con.createStatement();
-			st.execute("INSERT INTO cliente VALUES (nextval(nextval('seq_codcl'),'"+cliente.getEmail()+"','"+cliente.getPassword()+"','"+cliente.getNome()+"','"+cliente.getCognome()+"','"+cliente.getCellulare()+"','"+cliente.getDataN()+"');");
+			st.execute("INSERT INTO cliente VALUES (nextval('seq_codcl'),'"+cliente.getEmail()+"','"+cliente.getPassword()+"','"+cliente.getNome()+"','"+cliente.getCognome()+"','"+cliente.getCellulare()+"','"+cliente.getDataN()+"');");
 			con.close();
 			st.close();
 		}catch(SQLException e) {

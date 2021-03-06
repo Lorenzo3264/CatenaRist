@@ -38,70 +38,70 @@ public class WinDipUpdate extends JFrame {
 		setTitle("Assumi dipendente");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 530, 490);
+		setBounds(100, 100, 530, 510);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		txt_nome = new JTextField();
-		txt_nome.setBounds(122, 11, 382, 20);
+		txt_nome.setBounds(122, 31, 382, 20);
 		txt_nome.setText(dipendente.getNome());
 		contentPane.add(txt_nome);
 		txt_nome.setColumns(10);
 		
 		txt_cognome = new JTextField();
-		txt_cognome.setBounds(122, 42, 382, 20);
+		txt_cognome.setBounds(122, 62, 382, 20);
 		txt_cognome.setText(dipendente.getCognome());
 		contentPane.add(txt_cognome);
 		txt_cognome.setColumns(10);
 		
 		txt_email = new JTextField();
-		txt_email.setBounds(122, 73, 382, 20);
+		txt_email.setBounds(122, 93, 382, 20);
 		txt_email.setText(dipendente.getEmail());
 		contentPane.add(txt_email);
 		txt_email.setColumns(10);
 		
 		txt_cellulare = new JTextField();
-		txt_cellulare.setBounds(122, 104, 382, 20);
+		txt_cellulare.setBounds(122, 124, 382, 20);
 		txt_cellulare.setText(dipendente.getCellulare());
 		contentPane.add(txt_cellulare);
 		txt_cellulare.setColumns(10);
 		
 		txt_via = new JTextField();
-		txt_via.setBounds(122, 135, 382, 20);
+		txt_via.setBounds(122, 155, 382, 20);
 		txt_via.setText(dipendente.getVia());
 		contentPane.add(txt_via);
 		txt_via.setColumns(10);
 		
 		txt_civico = new JTextField();
-		txt_civico.setBounds(122, 166, 382, 20);
+		txt_civico.setBounds(122, 186, 382, 20);
 		txt_civico.setText(dipendente.getCivico());
 		contentPane.add(txt_civico);
 		txt_civico.setColumns(10);
 		
 		JLabel lbl_nome = new JLabel("Nome");
-		lbl_nome.setBounds(10, 14, 102, 14);
+		lbl_nome.setBounds(10, 34, 102, 14);
 		contentPane.add(lbl_nome);
 		
 		JLabel lbl_cognome = new JLabel("Cognome");
-		lbl_cognome.setBounds(10, 45, 102, 14);
+		lbl_cognome.setBounds(10, 65, 102, 14);
 		contentPane.add(lbl_cognome);
 		
 		JLabel lbl_email = new JLabel("Email");
-		lbl_email.setBounds(10, 76, 102, 14);
+		lbl_email.setBounds(10, 96, 102, 14);
 		contentPane.add(lbl_email);
 		
 		JLabel lbl_cellulare = new JLabel("Cellulare");
-		lbl_cellulare.setBounds(10, 107, 102, 14);
+		lbl_cellulare.setBounds(10, 127, 102, 14);
 		contentPane.add(lbl_cellulare);
 		
 		JLabel lbl_via = new JLabel("Via");
-		lbl_via.setBounds(10, 138, 102, 14);
+		lbl_via.setBounds(10, 158, 102, 14);
 		contentPane.add(lbl_via);
 		
 		JLabel lbl_civico = new JLabel("Civico");
-		lbl_civico.setBounds(10, 169, 102, 14);
+		lbl_civico.setBounds(10, 189, 102, 14);
 		contentPane.add(lbl_civico);
 		
 		String[] ruoli = {"chef", "cuoco", "lavapiatti","cameriere","direttore di sala"}; //direttore di sala = direttoreSala
@@ -111,11 +111,11 @@ public class WinDipUpdate extends JFrame {
 		}else {
 			cb_ruolo.setSelectedItem(dipendente.getRuolo());
 		}
-		cb_ruolo.setBounds(122, 376, 382, 20);
+		cb_ruolo.setBounds(122, 396, 382, 20);
 		contentPane.add(cb_ruolo);
 		
 		JLabel lbl_ruolo = new JLabel("Ruolo");
-		lbl_ruolo.setBounds(10, 379, 102, 14);
+		lbl_ruolo.setBounds(10, 399, 102, 14);
 		contentPane.add(lbl_ruolo);
 		
 		JButton btn_indietro = new JButton("indietro");
@@ -124,7 +124,7 @@ public class WinDipUpdate extends JFrame {
 				controllerManager.dipUpdateExit();
 			}
 		});
-		btn_indietro.setBounds(10, 417, 102, 23);
+		btn_indietro.setBounds(10, 437, 102, 23);
 		contentPane.add(btn_indietro);
 		
 		UtilDateModel model = new UtilDateModel();
@@ -138,7 +138,7 @@ public class WinDipUpdate extends JFrame {
 		model.setDate(year, month, day);
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		datePanel.setSize(494, 154);
-		datePanel.setLocation(10, 197);
+		datePanel.setLocation(10, 217);
 		contentPane.add(datePanel);
 		
 		JButton btn_conferma = new JButton("Modifica");
@@ -168,17 +168,19 @@ public class WinDipUpdate extends JFrame {
 					}
 					
 				} catch (NullPointerException e1) {
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(contentPane, "Inserisci una data di nascita", "Errore di input",
-							JOptionPane.ERROR_MESSAGE);
+					controllerManager.modifica(dipendente);
 				}
 			}
 		});
-		btn_conferma.setBounds(308, 417, 196, 23);
+		btn_conferma.setBounds(308, 437, 196, 23);
 		contentPane.add(btn_conferma);
 		
 		JLabel lbl_dataN = new JLabel("data di nascita: "+dipendente.getDataN());
-		lbl_dataN.setBounds(10, 354, 494, 14);
+		lbl_dataN.setBounds(10, 374, 494, 14);
 		contentPane.add(lbl_dataN);
+		
+		JLabel attenzione = new JLabel("Non inserire mai apostrofi");
+		attenzione.setBounds(122, 6, 382, 14);
+		contentPane.add(attenzione);
 	}
 }

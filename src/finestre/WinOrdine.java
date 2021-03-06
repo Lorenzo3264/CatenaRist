@@ -55,12 +55,12 @@ public class WinOrdine extends JFrame {
 		contentPane.setLayout(null);
 
 		txt_prezzomin = new JTextField();
-		txt_prezzomin.setBounds(126, 12, 86, 20);
+		txt_prezzomin.setBounds(121, 31, 86, 20);
 		contentPane.add(txt_prezzomin);
 		txt_prezzomin.setColumns(10);
 
 		txt_prezzomax = new JTextField();
-		txt_prezzomax.setBounds(367, 12, 86, 20);
+		txt_prezzomax.setBounds(362, 31, 86, 20);
 		contentPane.add(txt_prezzomax);
 		txt_prezzomax.setColumns(10);
 
@@ -132,7 +132,7 @@ public class WinOrdine extends JFrame {
 
 			}
 		});
-		btn_prezzo.setBounds(505, 11, 136, 23);
+		btn_prezzo.setBounds(500, 30, 136, 23);
 		contentPane.add(btn_prezzo);
 
 		JButton btn_conferma = new JButton("Avanti");
@@ -209,12 +209,16 @@ public class WinOrdine extends JFrame {
 		contentPane.add(jsp_prodotti);
 
 		JLabel lbl_prezzomin = new JLabel("Prezzo minimo");
-		lbl_prezzomin.setBounds(30, 15, 86, 14);
+		lbl_prezzomin.setBounds(25, 34, 86, 14);
 		contentPane.add(lbl_prezzomin);
 
 		JLabel lbl_prezzomax = new JLabel("Prezzo massimo");
-		lbl_prezzomax.setBounds(249, 15, 108, 14);
+		lbl_prezzomax.setBounds(244, 34, 108, 14);
 		contentPane.add(lbl_prezzomax);
+		
+		JLabel attenzione = new JLabel("Non inserire mai apostrofi");
+		attenzione.setBounds(25, 6, 382, 14);
+		contentPane.add(attenzione);
 
 	}
 

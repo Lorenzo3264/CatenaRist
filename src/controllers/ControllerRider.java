@@ -40,7 +40,7 @@ public class ControllerRider extends PadreController {
     		attivitaDAO = new AttivitaDAO();
     		attivita = attivitaDAO.fetchAttivita(rider);
     	}catch (SQLException e) {
-    		e.printStackTrace();
+  
     	};
     	winRider.setVisible(true);
     };
@@ -53,7 +53,8 @@ public class ControllerRider extends PadreController {
 			winConsegne = new WinConsegne(this, consegne);
 			winConsegne.setVisible(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(winRider, "C'è stato un errore nel database", "Errore",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -65,7 +66,8 @@ public class ControllerRider extends PadreController {
 			winRiderOrdini = new WinRiderOrdini(this, consegne);
 			winRiderOrdini.setVisible(true);
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(winRider, "C'è stato un errore nel database", "Errore",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -106,7 +108,6 @@ public class ControllerRider extends PadreController {
 			winInfoUpdate.setVisible(false);
 			winRider.setVisible(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(winInfoUpdate, "Ci sono errori nei valori inseriti", "Errore di input",
 					JOptionPane.ERROR_MESSAGE);
 		}
