@@ -163,8 +163,5 @@ public class WinDipInsert extends JFrame {
 		btn_conferma.setBounds(308, 440, 196, 23);
 		contentPane.add(btn_conferma);
 		
-		JLabel attenzione = new JLabel("Non inserire mai apostrofi");
-		attenzione.setBounds(122, 9, 382, 14);
-		contentPane.add(attenzione);
 	}
 }

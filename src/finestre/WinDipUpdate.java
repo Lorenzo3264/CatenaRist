@@ -178,9 +178,6 @@ public class WinDipUpdate extends JFrame {
 		JLabel lbl_dataN = new JLabel("data di nascita: "+dipendente.getDataN());
 		lbl_dataN.setBounds(10, 374, 494, 14);
 		contentPane.add(lbl_dataN);
-		
-		JLabel attenzione = new JLabel("Non inserire mai apostrofi");
-		attenzione.setBounds(122, 6, 382, 14);
-		contentPane.add(attenzione);
+
 	}
 }

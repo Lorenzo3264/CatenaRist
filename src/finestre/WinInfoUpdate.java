@@ -160,12 +160,5 @@ public class WinInfoUpdate extends JFrame {
 		btn_indietro.setBounds(10, 511, 89, 23);
 		contentPane.add(btn_indietro);
 		
-		JLabel attenzione = new JLabel("Non inserire mai apostrofi");
-		attenzione.setBounds(140, 21, 355, 14);
-		contentPane.add(attenzione);
-		
-		
-		
-		
 	}
 }

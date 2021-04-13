@@ -152,11 +152,6 @@ public class WinSignin extends JFrame {
 		JLabel lbl_dataN = new JLabel("Inserisci la data di nascita");
 		lbl_dataN.setBounds(22, 191, 233, 14);
 		contentPane.add(lbl_dataN);
-		
-		JLabel attenzione = new JLabel("Non inserire mai apostrofi");
-		attenzione.setBounds(135, 11, 382, 14);
-		contentPane.add(attenzione);
-		
 
 	}
 }

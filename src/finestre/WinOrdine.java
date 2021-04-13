@@ -215,10 +215,6 @@ public class WinOrdine extends JFrame {
 		JLabel lbl_prezzomax = new JLabel("Prezzo massimo");
 		lbl_prezzomax.setBounds(244, 34, 108, 14);
 		contentPane.add(lbl_prezzomax);
-		
-		JLabel attenzione = new JLabel("Non inserire mai apostrofi");
-		attenzione.setBounds(25, 6, 382, 14);
-		contentPane.add(attenzione);
 
 	}
 
